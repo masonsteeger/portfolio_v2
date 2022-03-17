@@ -1,38 +1,260 @@
+:root {
+  --primary: #282c34;
+  --secondary: white;
+  --ani-time: 2.8s;
+  --ani-delay: 0.2s;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  overflow: hidden;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--primary);
   min-height: 100vh;
+  min-width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: var(--secondary);
+  overflow: hidden !important;
 }
 
-.App-link {
-  color: #61dafb;
+.div-box {
+  width: calc(50vw - 6px);
+  height: 50vh;
+  overflow: hidden;
+  background-color: var(--primary);
 }
 
-@keyframes App-logo-spin {
+.circle-container {
+  position: absolute;
+  top: 0px;
+  left: calc(50vw - 98px);
+  z-index: 999;
+  background-color: transparent;
+  height: 196px;
+  width: 196px;
+  overflow-x: visible;
+}
+
+.circle-path {
+  position: absolute;
+  top: calc(50vh - 98px);
+  left: 0px;
+  height: 196px;
+  width: 100vw;
+  z-index: 998;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+#tl {
+  border-right: 6px solid var(--secondary);
+  mask-image: radial-gradient(
+    circle at bottom right,
+    transparent 0,
+    transparent 86px,
+    black 21px
+  );
+  mask-position: bottom right;
+  mask-repeat: no-repeat;
+  transform: translateY(-50vh);
+  overflow: hidden;
+  animation: slide-tl var(--ani-time) cubic-bezier(0.42, 0, 0.58, 1)
+    var(--ani-delay) normal forwards;
+}
+#tr {
+  border-left: 6px solid var(--secondary);
+  mask-image: radial-gradient(
+    circle at bottom left,
+    transparent 0,
+    transparent 86px,
+    black 21px
+  );
+  mask-position: bottom left;
+  mask-repeat: no-repeat;
+  transform: translateY(-50vh);
+  overflow: hidden;
+  animation: slide-tr var(--ani-time) cubic-bezier(0.42, 0, 0.58, 1)
+    var(--ani-delay) normal forwards;
+}
+#bl {
+  border-right: 6px solid var(--secondary);
+  mask-image: radial-gradient(
+    circle at top right,
+    transparent 0,
+    transparent 86px,
+    black 21px
+  );
+  mask-position: top right;
+  mask-repeat: no-repeat;
+  transform: translateY(50vh);
+  overflow: hidden;
+  animation: slide-bl var(--ani-time) cubic-bezier(0.42, 0, 0.58, 1)
+    var(--ani-delay) normal forwards;
+}
+#br {
+  border-left: 6px solid var(--secondary);
+  mask-image: radial-gradient(
+    circle at top left,
+    transparent 0,
+    transparent 86px,
+    black 21px
+  );
+  mask-position: top left;
+  mask-repeat: no-repeat;
+  transform: translateY(50vh);
+  overflow: hidden;
+  animation: slide-br var(--ani-time) cubic-bezier(0.42, 0, 0.58, 1)
+    var(--ani-delay) normal forwards;
+}
+
+.halfcircle {
+  box-sizing: border-box;
+  height: 100%;
+  right: 0px;
+  position: absolute;
+  border: solid 12px transparent;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-radius: 50%;
+  animation: rotate var(--ani-time) cubic-bezier(0.42, 0, 0.58, 1)
+    var(--ani-delay) normal forwards;
+}
+
+#halfclip-right {
+  width: 50%;
+  height: 100%;
+  right: 0px;
+  position: absolute;
+  transform-origin: left center;
+}
+
+#halfclip-left {
+  width: 50%;
+  height: 100%;
+  right: 0px;
+  transform: rotate(180deg);
+  position: absolute;
+  transform-origin: left center;
+}
+
+#clipped {
+  width: 200%;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  color: black;
+  opacity: 0;
+  animation: fade-in 1s ease-in normal forwards;
+}
+
+@keyframes fade-in {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-tl {
+  0% {
+    transform: translateY(-50vh);
+  }
+  50%,
+  80% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateX(-51vw);
+  }
+}
+
+@keyframes slide-bl {
+  0% {
+    transform: translateY(50vh);
+  }
+  50%,
+  80% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateX(-51vw);
+  }
+}
+
+@keyframes slide-tr {
+  0% {
+    transform: translateY(-50vh);
+  }
+  50%,
+  80% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateX(51vw);
+  }
+}
+
+@keyframes slide-br {
+  0% {
+    transform: translateY(50vh);
+  }
+  50%,
+  80% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateX(51vw);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    background-color: var(--primary);
+    border-top-color: transparent;
+    border-left-color: transparent;
+  }
+  49.9% {
+    border-top-color: transparent;
+    border-left-color: transparent;
+  }
+  50% {
+    border-top-color: var(--secondary);
+    border-left-color: var(--secondary);
+    transform: rotate(-45deg);
+  }
+  65% {
+    background-color: var(--primary);
+    border-top-color: var(--secondary);
+    border-left-color: var(--secondary);
+    transform: rotate(135deg);
+  }
+  75%,
+  80% {
+    background-color: var(--secondary);
+    border-top-color: var(--secondary);
+    border-left-color: var(--secondary);
+    transform: rotate(135deg);
+  }
+  100% {
+    background-color: var(--secondary);
+    border-top-color: var(--secondary);
+    border-left-color: var(--secondary);
+    transform: translateX(51vw) rotate(135deg);
   }
 }
