@@ -1,13 +1,39 @@
 :root {
-  --primary: #282c34;
-  --secondary: white;
+  --primary: #dce8eb;
+  --secondary: #24232c;
+  --font-2: #80a2ac;
+  --accent: #d38239;
   --ani-time: 2.8s;
   --ani-delay: 0.2s;
 }
 
+h1 {
+  font-size: 72px;
+  letter-spacing: 3px;
+  word-spacing: 10px;
+  font-weight: 900;
+  color: var(--primary);
+  margin: 10px;
+}
+h2 {
+  font-size: 60px;
+  font-weight: 500;
+  color: var(--font-2);
+  margin: 10px;
+}
+p {
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--primary);
+  margin: 20px;
+}
+
+/* ============== INTRO.JS ============== */
+
 .App {
   text-align: center;
   overflow: hidden;
+  background-color: var(--secondary);
 }
 
 .App-header {
@@ -43,6 +69,9 @@
   height: 196px;
   width: 196px;
   overflow-x: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .circle-path {
@@ -151,15 +180,33 @@
   width: 200%;
 }
 
+#logo {
+  color: #d38239;
+  position: absolute;
+  z-index: 1000;
+  animation: logo var(--ani-time) var(--ani-delay) normal forwards;
+  opacity: 0;
+}
+
+/* ============== LANDING.JS ============== */
+
 .main {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   height: 100vh;
   width: 100vw;
-  color: black;
   opacity: 0;
   animation: fade-in 1s ease-in normal forwards;
+  background-color: var(--secondary);
+}
+
+.row-1 {
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  width: 100vw;
 }
 
 @keyframes fade-in {
@@ -174,10 +221,18 @@
 @keyframes slide-tl {
   0% {
     transform: translateY(-50vh);
+    animation-timing-function: ease-out;
   }
   50%,
   80% {
+    animation-timing-function: ease-in;
     transform: translateY(0px);
+  }
+  81% {
+    transform: translateX(-10px);
+  }
+  88% {
+    transform: translateX(-80px);
   }
   100% {
     transform: translateX(-51vw);
@@ -187,10 +242,18 @@
 @keyframes slide-bl {
   0% {
     transform: translateY(50vh);
+    animation-timing-function: ease-out;
   }
   50%,
   80% {
+    animation-timing-function: ease-in;
     transform: translateY(0px);
+  }
+  81% {
+    transform: translateX(-10px);
+  }
+  88% {
+    transform: translateX(-80px);
   }
   100% {
     transform: translateX(-51vw);
@@ -200,10 +263,19 @@
 @keyframes slide-tr {
   0% {
     transform: translateY(-50vh);
+    animation-timing-function: ease-out;
   }
   50%,
   80% {
+    animation-timing-function: ease-in;
     transform: translateY(0px);
+  }
+  81% {
+    animation-timing-function: ease-in;
+    transform: translateX(10px);
+  }
+  88% {
+    transform: translateX(80px);
   }
   100% {
     transform: translateX(51vw);
@@ -213,10 +285,18 @@
 @keyframes slide-br {
   0% {
     transform: translateY(50vh);
+    animation-timing-function: ease-out;
   }
   50%,
   80% {
+    animation-timing-function: ease-in;
     transform: translateY(0px);
+  }
+  81% {
+    transform: translateX(10px);
+  }
+  88% {
+    transform: translateX(80px);
   }
   100% {
     transform: translateX(51vw);
@@ -225,36 +305,76 @@
 
 @keyframes rotate {
   0% {
-    background-color: var(--primary);
+    background-color: transparent;
     border-top-color: transparent;
     border-left-color: transparent;
   }
   49.9% {
+    background-color: transparent;
     border-top-color: transparent;
     border-left-color: transparent;
   }
   50% {
+    animation-timing-function: ease-in-out;
     border-top-color: var(--secondary);
     border-left-color: var(--secondary);
     transform: rotate(-45deg);
   }
   65% {
-    background-color: var(--primary);
     border-top-color: var(--secondary);
     border-left-color: var(--secondary);
     transform: rotate(135deg);
   }
   75%,
   80% {
+    animation-timing-function: ease-in;
     background-color: var(--secondary);
     border-top-color: var(--secondary);
     border-left-color: var(--secondary);
     transform: rotate(135deg);
+  }
+  81% {
+    transform: translateX(10px);
+  }
+  88% {
+    background-color: var(--secondary);
+    border-top-color: var(--secondary);
+    border-left-color: var(--secondary);
+    transform: translateX(80px) rotate(135deg);
   }
   100% {
     background-color: var(--secondary);
     border-top-color: var(--secondary);
     border-left-color: var(--secondary);
     transform: translateX(51vw) rotate(135deg);
+  }
+}
+
+@keyframes logo {
+  0% {
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  48% {
+    transform: rotate(-20deg);
+    animation-timing-function: ease-in-out;
+  }
+  50% {
+    opacity: 1;
+  }
+  83% {
+    transform: rotate(740deg);
+    opacity: 1;
+  }
+  91% {
+    transform: rotate(720deg);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(720deg);
   }
 }
