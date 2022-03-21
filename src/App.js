@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Intro from "./Intro";
-import Landing from "./Landing";
+import MobileLanding from "./MobileLanding";
 import "./App.css";
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className='App' style={{ overflow: "hidden" }}>
-      {animation ? <Intro ovFlow={ovFlow} bgCol={bgCol} /> : <Landing />}
+      {animation ? <Intro ovFlow={ovFlow} bgCol={bgCol} /> : <MobileLanding />}
     </div>
   );
 }
