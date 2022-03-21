@@ -15,7 +15,7 @@ function App() {
     }, 2300);
     setTimeout(() => {
       setAnimation(false);
-    }, 3200);
+    }, 3500);
   }, []);
 
   return (

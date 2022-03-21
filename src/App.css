@@ -13,7 +13,7 @@ h1 {
   word-spacing: 10px;
   font-weight: 900;
   color: var(--primary);
-  margin: 10px;
+  margin: 0px;
 }
 h2 {
   font-size: 48px;
@@ -221,10 +221,10 @@ p {
 .landing-name-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  height: 90vh;
-  width: 40vw;
+  height: 88vh;
+  width: 100vw;
   opacity: 0;
   animation: fade-in 1s ease-in normal forwards;
   background-color: var(--secondary);
@@ -234,7 +234,10 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: baseline;
   width: 100%;
+  min-height: 65px;
+  max-height: 70px;
 }
 
 .letter-container {
@@ -245,13 +248,13 @@ p {
 
 .name-letters {
   margin: 0;
-  width: 70px;
+  min-width: 70px;
 }
 
 .name-hr {
-  width: 50px;
-  min-height: 20px;
-  margin: 32px 10px;
+  min-width: 20px;
+  min-height: 50px;
+  margin: 0 25px 0 10px;
   background-color: var(--accent);
 }
 .landing-image {

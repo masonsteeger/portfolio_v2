@@ -14,16 +14,6 @@ const MobileLanding = () => {
           <hr className='mobile-menu-icon' />
         </div>
       </div>
-      <div
-        className='landing-name-container'
-        style={{ width: "65vw", alignItems: "flex-start" }}>
-        <div style={{ textAlign: "left", marginTop: "auto" }}>
-          <h2>software</h2>
-        </div>
-        <div style={{ textAlign: "left" }}>
-          <h2>developer</h2>
-        </div>
-      </div>
       <div className='landing-name-container'>
         <div className='row-1'>
           <h1 className='name-letters'>M</h1>
@@ -46,10 +36,16 @@ const MobileLanding = () => {
           <h1 className='name-letters'>G</h1>
         </div>
         <div className='row-1'>
+          <div style={{ textAlign: "left" }}>
+            <h2>software</h2>
+          </div>
           <div className='name-hr'></div>
           <h1 className='name-letters'>E</h1>
         </div>
         <div className='row-1'>
+          <div style={{ textAlign: "left" }}>
+            <h2>developer</h2>
+          </div>
           <div className='name-hr'></div>
           <h1 className='name-letters'>R</h1>
         </div>
