@@ -7,33 +7,17 @@ const MobileLanding = () => {
 
   return (
     <div className='landing-container'>
+      <div className='menu-container'>
+        <div>
+          <hr className='mobile-menu-icon' />
+          <hr className='mobile-menu-icon' />
+          <hr className='mobile-menu-icon' />
+        </div>
+      </div>
       <div
         className='landing-name-container'
         style={{ width: "65vw", alignItems: "flex-start" }}>
-        <div className='menu-container'>
-          <div>
-            <hr className='mobile-menu-icon' />
-            <hr className='mobile-menu-icon' />
-            <hr className='mobile-menu-icon' />
-          </div>
-        </div>
-        <div
-          style={{
-            height: "53%",
-            width: "100%",
-            overflow: "hidden",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}>
-          <video autoPlay muted loop height='100%' width='250%'>
-            <source
-              src={process.env.PUBLIC_URL + "/images/memoji.mp4"}
-              type='video/mp4'
-            />
-          </video>
-        </div>
-        <div style={{ textAlign: "left" }}>
+        <div style={{ textAlign: "left", marginTop: "auto" }}>
           <h2>software</h2>
         </div>
         <div style={{ textAlign: "left" }}>

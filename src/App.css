@@ -194,7 +194,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 100vh;
+  height: 200vh;
   width: 100vw;
 }
 
@@ -205,16 +205,17 @@ p {
 }
 
 .menu-container {
-  height: 100px;
-  width: 90%;
+  height: 30px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
   box-sizing: border-box;
   color: #d38239;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   overflow-y: hidden;
-  margin-left: 30px;
-  margin-bottom: 10px;
+  z-index: 999;
 }
 
 .landing-name-container {
@@ -222,7 +223,7 @@ p {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   width: 40vw;
   opacity: 0;
   animation: fade-in 1s ease-in normal forwards;
