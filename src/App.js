@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Intro from "./Intro";
-import MobileLanding from "./MobileLanding";
+import MobileLanding from "./Mobile/MobileLanding";
+import useWindowSize from "./Hooks/useWindowSize";
 import "./App.css";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
   const [bgCol, setBgCol] = useState("#80a2ac");
   const [animation, setAnimation] = useState(true);
 
+  const size = useWindowSize();
   useEffect(() => {
     setTimeout(() => {
       setOvFlow("visible");
@@ -15,12 +17,16 @@ function App() {
     }, 2300);
     setTimeout(() => {
       setAnimation(false);
-    }, 3500);
+    }, 3200);
   }, []);
 
   return (
-    <div className='App' style={{ overflow: "hidden" }}>
-      {animation ? <Intro ovFlow={ovFlow} bgCol={bgCol} /> : <MobileLanding />}
+    <div id='outer' className='App' style={{ overflow: "hidden" }}>
+      {animation ? (
+        <Intro ovFlow={ovFlow} bgCol={bgCol} />
+      ) : (
+        <MobileLanding size={size} />
+      )}
     </div>
   );
 }

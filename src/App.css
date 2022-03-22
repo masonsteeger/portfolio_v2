@@ -7,6 +7,8 @@
   --ani-delay: 0.2s;
 }
 
+/* ==============  GENERAL CSS ============== */
+
 h1 {
   font-size: 72px;
   letter-spacing: 3px;
@@ -15,17 +17,35 @@ h1 {
   color: var(--primary);
   margin: 0px;
 }
+
 h2 {
   font-size: 48px;
   font-weight: 500;
   color: var(--font-2);
   margin: 10px;
 }
+
 p {
   font-size: 24px;
   font-weight: 300;
   color: var(--primary);
   margin: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html ::-webkit-scrollbar-thumb {
+  background-color: transparent;
 }
 
 /* ============== INTRO.JS ============== */
@@ -100,6 +120,7 @@ p {
   animation: slide-tl var(--ani-time) cubic-bezier(0.42, 0, 0.58, 1)
     var(--ani-delay) normal forwards;
 }
+
 #tr {
   border-left: 6px solid var(--secondary);
   mask-image: radial-gradient(
@@ -115,6 +136,7 @@ p {
   animation: slide-tr var(--ani-time) cubic-bezier(0.42, 0, 0.58, 1)
     var(--ani-delay) normal forwards;
 }
+
 #bl {
   border-right: 6px solid var(--secondary);
   mask-image: radial-gradient(
@@ -130,6 +152,7 @@ p {
   animation: slide-bl var(--ani-time) cubic-bezier(0.42, 0, 0.58, 1)
     var(--ani-delay) normal forwards;
 }
+
 #br {
   border-left: 6px solid var(--secondary);
   mask-image: radial-gradient(
@@ -188,24 +211,11 @@ p {
   opacity: 0;
 }
 
-/* ============== LANDING.JS ============== */
-
-.landing-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 200vh;
-  width: 100vw;
-}
-
-#img-1 {
-  background-image: url("/public/images/smile.jpg");
-  background-size: cover;
-  background-position: right;
-}
+/* ============== MENU.JS ============== */
 
 .menu-container {
-  height: 30px;
+  height: 35px;
+  width: 35px;
   position: fixed;
   top: 20px;
   left: 20px;
@@ -216,6 +226,76 @@ p {
   justify-content: flex-start;
   overflow-y: hidden;
   z-index: 999;
+  transition: transform 0.3s;
+}
+
+.mobile-menu-icon {
+  width: 30px;
+  border-color: #d38239;
+}
+
+#x-1 {
+  transform: translateY(5px) rotate(45deg);
+  transition: transform 0.3s;
+}
+
+#x-2 {
+  transform: translateY(-5px) rotate(-45deg);
+  transition: transform 0.3s;
+}
+
+#x-3 {
+  border-color: transparent;
+  transition: border-color 0.3s;
+}
+
+#x-1-off {
+  transform: translateY(0px) rotate(0deg);
+  transition: transform 0.3s;
+}
+
+#x-2-off {
+  transform: translateY(0px) rotate(0deg);
+  transition: transform 0.3s;
+}
+
+#x-3-off {
+  border-color: #d38239;
+  transition: border-color 0.3s;
+}
+
+/* ============== CUSTOMSCROLL.JS ============== */
+
+#scroll-track {
+  width: 1.5vw;
+  background-color: transparent;
+  position: fixed;
+  right: 0px;
+  top: 0.25vh;
+}
+
+#scrollbar {
+  background-color: transparent;
+  width: 5px;
+  position: relative;
+  border-radius: 25px;
+  transition: background-color 0.5s;
+}
+
+/* ============== MOBILELANDING.JS ============== */
+
+#app-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 200vh;
+  width: 98.5vw;
+}
+
+#img-1 {
+  background-image: url("/public/images/smile.jpg");
+  background-size: cover;
+  background-position: right;
 }
 
 .landing-name-container {
@@ -266,11 +346,6 @@ p {
   background-position: right;
   max-width: 650px;
   transform: translateY(100px);
-}
-
-.mobile-menu-icon {
-  width: 30px;
-  border-color: #d38239;
 }
 
 /* ============== CSS ANIMATION KEYFRAMES ============== */

@@ -1,19 +1,14 @@
-import { fontSize } from "@mui/system";
 import React, { useEffect, useState } from "react";
+import Menu from "./Menu";
+import CustomScroll from "../General/CustomScroll";
 
-const MobileLanding = () => {
+const MobileLanding = ({ size }) => {
   const [descriptor, setDescriptor] = useState("");
   const [arrPos, setArrPos] = useState(0);
 
   return (
-    <div className='landing-container'>
-      <div className='menu-container'>
-        <div>
-          <hr className='mobile-menu-icon' />
-          <hr className='mobile-menu-icon' />
-          <hr className='mobile-menu-icon' />
-        </div>
-      </div>
+    <div id='app-container'>
+      <Menu />
       <div className='landing-name-container'>
         <div className='row-1'>
           <h1 className='name-letters'>M</h1>
@@ -50,6 +45,7 @@ const MobileLanding = () => {
           <h1 className='name-letters'>R</h1>
         </div>
       </div>
+      <CustomScroll size={size} />
     </div>
   );
 };
