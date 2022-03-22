@@ -21,7 +21,7 @@ const CustomScroll = ({ size }) => {
         return p;
       });
       setScrollBarHeight((p) => {
-        p = `${Math.max((TH / SH) * STH, 20)}px`;
+        p = `${Math.max((TH / SH) * STH - 20, 20)}px`;
         return p;
       });
       document.getElementById("scrollbar").style.backgroundColor = "#d38239";
@@ -29,8 +29,6 @@ const CustomScroll = ({ size }) => {
       let min = (+window.scrollY / +SH) * TH;
       setScrollBarPosition((p) => {
         p = `${Math.min(min, TH - Math.max((TH / SH) * STH, 20))}px`;
-
-        console.log(trackHeight);
 
         return p;
       });
