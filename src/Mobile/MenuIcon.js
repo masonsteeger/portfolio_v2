@@ -6,18 +6,18 @@ const MenuIcon = () => {
 
   useEffect(() => {
     [0, 1, 2].map((el, i) => {
-      if (!open && document.getElementById(`x-${i + 1}-off`)) {
+      if (open && document.getElementById(`x-${i + 1}-off`)) {
         document
           .getElementById(`x-${i + 1}-off`)
           .setAttribute("id", `x-${i + 1}`);
-      } else if (open && document.getElementById(`x-${i + 1}`)) {
-        document
-          .getElementById(`x-${i + 1}`)
-          .setAttribute("id", `x-${i + 1}-off`);
-      } else if (document.getElementById(`x-${i + 1}-init`) && open) {
+      } else if (open && document.getElementById(`x-${i + 1}-init`)) {
         document
           .getElementById(`x-${i + 1}-init`)
           .setAttribute("id", `x-${i + 1}`);
+      } else if (!open && document.getElementById(`x-${i + 1}`)) {
+        document
+          .getElementById(`x-${i + 1}`)
+          .setAttribute("id", `x-${i + 1}-off`);
       }
     });
   }, [open]);
