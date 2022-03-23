@@ -3,6 +3,7 @@ import Intro from "./Intro";
 import MobileLanding from "./Mobile/MobileLanding";
 import useWindowSize from "./Hooks/useWindowSize";
 import "./App.css";
+// import CustomScroll from "./General/CustomScroll";
 
 function App() {
   const [ovFlow, setOvFlow] = useState("hidden");
@@ -27,6 +28,7 @@ function App() {
       ) : (
         <MobileLanding size={size} />
       )}
+      {/* <CustomScroll size={size} /> */}
     </div>
   );
 }

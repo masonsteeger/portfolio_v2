@@ -33,6 +33,7 @@ p {
 }
 
 ::-webkit-scrollbar {
+  display: none;
   width: 0px;
 }
 
@@ -211,11 +212,11 @@ html ::-webkit-scrollbar-thumb {
   opacity: 0;
 }
 
-/* ============== MENU.JS ============== */
+/* ============== MENUICON.JS ============== */
 
-.menu-container {
-  height: 35px;
-  width: 35px;
+#menu-icon-container {
+  height: 40px;
+  width: 40px;
   position: fixed;
   top: 20px;
   left: 20px;
@@ -230,17 +231,18 @@ html ::-webkit-scrollbar-thumb {
 }
 
 .mobile-menu-icon {
-  width: 30px;
+  width: 40px;
+  border-width: 2px;
   border-color: #d38239;
 }
 
 #x-1 {
-  transform: translateY(5px) rotate(45deg);
+  transform: translateY(10px) rotate(45deg);
   transition: transform 0.3s;
 }
 
 #x-2 {
-  transform: translateY(-5px) rotate(-45deg);
+  transform: translateY(-2px) rotate(-45deg);
   transition: transform 0.3s;
 }
 
@@ -262,6 +264,87 @@ html ::-webkit-scrollbar-thumb {
 #x-3-off {
   border-color: #d38239;
   transition: border-color 0.3s;
+}
+
+#x-1-init {
+  transform: translateY(0px) rotate(0deg);
+  transition: transform 0.3s;
+}
+
+#x-2-init {
+  transform: translateY(0px) rotate(0deg);
+  transition: transform 0.3s;
+}
+
+#x-3-init {
+  border-color: #d38239;
+  transition: border-color 0.3s;
+}
+
+/* ============== MENU.JS ============== */
+
+#menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hide-menu {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.menu-button {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+  overflow: hidden;
+}
+
+span.ripple {
+  position: absolute; /* The absolute position we mentioned earlier */
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+#init {
+  transform: scale(0);
+}
+
+#drop-animation {
+  transform: scale(0);
+  animation: drop 0.7s ease-in-out normal forwards;
+}
+
+#close-animation {
+  transform: scale(0);
+  animation-name: close;
+  animation-duration: 0.7s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
 }
 
 /* ============== CUSTOMSCROLL.JS ============== */
@@ -517,5 +600,41 @@ html ::-webkit-scrollbar-thumb {
   100% {
     opacity: 0;
     transform: rotate(720deg);
+  }
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-55vh) scale(0.1);
+  }
+  40% {
+    transform: translateY(0) scale(0.1);
+  }
+  70% {
+    transform: scale(0.2);
+  }
+  100% {
+    transform: scale(3.2);
+  }
+}
+@keyframes close {
+  0% {
+    transform: scale(3.2);
+  }
+  70% {
+    transform: scale(0.2);
+  }
+  80% {
+    transform: scale(0.3);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
   }
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Menu from "./Menu";
-import CustomScroll from "../General/CustomScroll";
+
+import MenuIcon from "./MenuIcon";
 
 const MobileLanding = ({ size }) => {
   const [descriptor, setDescriptor] = useState("");
@@ -8,7 +8,7 @@ const MobileLanding = ({ size }) => {
 
   return (
     <div id='app-container'>
-      <Menu />
+      <MenuIcon />
       <div className='landing-name-container'>
         <div className='row-1'>
           <h1 className='name-letters'>M</h1>
@@ -45,7 +45,6 @@ const MobileLanding = ({ size }) => {
           <h1 className='name-letters'>R</h1>
         </div>
       </div>
-      <CustomScroll size={size} />
     </div>
   );
 };
