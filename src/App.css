@@ -367,12 +367,20 @@ span.ripple {
 
 /* ============== MOBILELANDING.JS ============== */
 
-#app-container {
+.app-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
   width: 98.5vw;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.visable {
+  transition: opacity 0.5s;
+  opacity: 1;
 }
 
 #img-1 {

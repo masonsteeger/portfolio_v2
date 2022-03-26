@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import circle from "./menu.svg";
 
-const Menu = ({ open, setOpen }) => {
+const Menu = ({ open, setOpen, handleSetPage, setContainerVar, setTime }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
@@ -68,18 +68,48 @@ const Menu = ({ open, setOpen }) => {
         src={circle}
         alt='menu-bg'
       />
-      <div className={showMenu ? "menu" : "menu hide-menu"}>
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+          setContainerVar("app-container");
+          setTimeout(() => {
+            handleSetPage(1);
+            setTime(Date.now());
+            console.log("changing page");
+          }, 500);
+        }}
+        className={showMenu ? "menu" : "menu hide-menu"}>
         <div className='menu-button'>
           <h1 style={{ color: "#24232c", fontSize: "48px" }}>
             <i>ABOUT</i>
           </h1>
         </div>
-        <div className='menu-button'>
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            setContainerVar("app-container");
+            setTimeout(() => {
+              handleSetPage(2);
+              setTime(Date.now());
+              console.log("changing page");
+            }, 500);
+          }}
+          className='menu-button'>
           <h1 style={{ color: "#24232c", fontSize: "48px" }}>
             <i>PROJECTS</i>
           </h1>
         </div>{" "}
-        <div className='menu-button'>
+        <div
+          onClick={(e) => {
+            e.stopPropagation();
+            setContainerVar("app-container");
+            setTimeout(() => {
+              handleSetPage(3);
+              setTime(Date.now());
+              console.log("changing page");
+            }, 500);
+          }}
+          className='menu-button'>
           <h1 style={{ color: "#24232c", fontSize: "48px" }}>
             <i>CONTACT</i>
           </h1>

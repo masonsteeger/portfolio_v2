@@ -1,19 +1,25 @@
 import React from "react";
 
-const About = () => {
+const Contact = () => {
   return (
     <div className='landing-name-container'>
       <div className='row-1'>
-        <h1 className='name-letters'>A</h1>
-      </div>
-      <div className='row-1'>
-        <h1 className='name-letters'>B</h1>
+        <h1 className='name-letters'>C</h1>
       </div>
       <div className='row-1'>
         <h1 className='name-letters'>O</h1>
       </div>
       <div className='row-1'>
-        <h1 className='name-letters'>U</h1>
+        <h1 className='name-letters'>N</h1>
+      </div>
+      <div className='row-1'>
+        <h1 className='name-letters'>T</h1>
+      </div>
+      <div className='row-1'>
+        <h1 className='name-letters'>A</h1>
+      </div>
+      <div className='row-1'>
+        <h1 className='name-letters'>C</h1>
       </div>
       <div className='row-1'>
         <h1 className='name-letters'>T</h1>
@@ -26,4 +32,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Contact;

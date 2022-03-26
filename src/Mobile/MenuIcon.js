@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Menu from "./Menu";
 
-const MenuIcon = () => {
+const MenuIcon = ({ handleSetPage, setContainerVar, setTime }) => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -37,7 +37,13 @@ const MenuIcon = () => {
           <hr id='x-3-init' className='mobile-menu-icon' />
         </div>
       </div>
-      <Menu open={open} setOpen={setOpen} />
+      <Menu
+        open={open}
+        setOpen={setOpen}
+        handleSetPage={handleSetPage}
+        setContainerVar={setContainerVar}
+        setTime={setTime}
+      />
     </>
   );
 };
