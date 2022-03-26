@@ -107,12 +107,12 @@ const MobileLanding = ({ size }) => {
         ) : null}
         {page === 1 ? (
           <Suspense fallback={<div>Loading...</div>}>
-            <About />
+            <Projects />
           </Suspense>
         ) : null}
         {page === 2 ? (
           <Suspense fallback={<div>Loading...</div>}>
-            <Projects />
+            <About />
           </Suspense>
         ) : null}
         {page === 3 ? (

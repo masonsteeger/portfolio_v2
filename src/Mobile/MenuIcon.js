@@ -25,6 +25,7 @@ const MenuIcon = ({ handleSetPage, setContainerVar, setTime }) => {
     <>
       <div
         onClick={(e) => {
+          e.stopPropagation();
           setOpen((p) => {
             p = !p;
             return p;
@@ -37,15 +38,14 @@ const MenuIcon = ({ handleSetPage, setContainerVar, setTime }) => {
           <hr id='x-3-init' className='mobile-menu-icon' />
         </div>
       </div>
-      {open && (
-        <Menu
-          open={open}
-          setOpen={setOpen}
-          handleSetPage={handleSetPage}
-          setContainerVar={setContainerVar}
-          setTime={setTime}
-        />
-      )}
+
+      <Menu
+        open={open}
+        setOpen={setOpen}
+        handleSetPage={handleSetPage}
+        setContainerVar={setContainerVar}
+        setTime={setTime}
+      />
     </>
   );
 };
