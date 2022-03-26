@@ -11,8 +11,10 @@ const Menu = ({ open, setOpen, handleSetPage, setContainerVar, setTime }) => {
       document
         .getElementById("drop-animation")
         .setAttribute("id", "close-animation");
-
-      setShowMenu(false);
+      setMenuOpacity(false);
+      setTimeout(() => {
+        setShowMenu(false);
+      }, 200);
     } else if (open && document.getElementById("close-animation")) {
       document
         .getElementById("close-animation")

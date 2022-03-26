@@ -59,19 +59,19 @@ const MobileLanding = ({ size }) => {
 
   const handleScroll = (e, start, end) => {
     if (time + 700 - Date.now() < 0) {
+      setTime(Date.now());
       console.log("handling scroll");
       let dif;
       if (e) {
-        dif = e.deltaY + 1000;
+        dif = e.deltaY;
       } else {
         dif = start - end;
       }
       console.log(dif);
-      if (75 < dif || dif < -75) {
+      if (75 < dif || dif < -75 || e.deltaY) {
         setContainerVar("app-container");
         setTimeout(() => {
           handleSetPage("null", dif);
-          setTime(Date.now());
           console.log("changing page");
         }, 500);
       }

@@ -339,9 +339,9 @@ span.ripple {
 }
 
 #close-animation {
-  transform: scale(0);
+  /* transform: scale(0); */
   animation-name: close;
-  animation-duration: 0.7s;
+  animation-duration: 1s;
   animation-timing-function: ease-in-out;
   animation-direction: normal;
   animation-fill-mode: forwards;
@@ -395,7 +395,7 @@ span.ripple {
   justify-content: flex-start;
   align-items: center;
   height: 88vh;
-  width: 100vw;
+  width: 100%;
   opacity: 0;
   animation: fade-in 1s ease-in normal forwards;
   background-color: var(--secondary);
@@ -619,7 +619,7 @@ span.ripple {
     transform: translateY(0) scale(0.1);
   }
   70% {
-    transform: scale(0.2);
+    transform: scale(0.3);
   }
   100% {
     transform: scale(3.2);
@@ -629,14 +629,14 @@ span.ripple {
   0% {
     transform: scale(3.2);
   }
-  70% {
-    transform: scale(0.2);
+  50% {
+    transform: scale(3.2) scaleY(2.7) translateX(-50vw);
   }
-  80% {
-    transform: scale(0.3);
+  75% {
+    transform: scale(3.2) scaleY(2) translateX(-60vw);
   }
   100% {
-    transform: scale(0);
+    transform: scale(2.2) scaleY(2) translateX(-70vw);
   }
 }
 
