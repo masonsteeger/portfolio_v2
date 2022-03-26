@@ -613,10 +613,19 @@ span.ripple {
 
 @keyframes drop {
   0% {
-    transform: translateY(calc(-50vh)) scale(0.1);
+    transform: translateY(calc(-50vh)) scale(0.1, 0.1);
   }
   40% {
-    transform: translateY(0) scale(0.1);
+    transform: translateY(0) scale(0.1, 0.3);
+  }
+  48% {
+    transform: scale(0.3, 0.1);
+  }
+  57% {
+    transform: translateY(-30px) scale(0.3, 0.3);
+  }
+  66% {
+    transform: translateY(0px) scale(0.3, 0.2);
   }
   70% {
     transform: scale(0.3);
@@ -630,13 +639,16 @@ span.ripple {
     transform: scale(3.2);
   }
   50% {
-    transform: scale(3.2) scaleY(2.7) translateX(-50vw);
+    transform: scale(2.2, 4.5) translateX(-55vw);
   }
-  75% {
-    transform: scale(3.2) scaleY(2) translateX(-60vw);
+  60% {
+    transform: scale(2, 4) translateX(-50vw);
+  }
+  70% {
+    transform: scale(2, 4.5) translateX(-55vw);
   }
   100% {
-    transform: scale(2.2) scaleY(2) translateX(-70vw);
+    transform: scale(2, 4.5) translateX(-65vw);
   }
 }
 
