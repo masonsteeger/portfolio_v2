@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import circle from "./menu.svg";
+
 const Menu = ({ open, setOpen }) => {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -27,7 +29,6 @@ const Menu = ({ open, setOpen }) => {
   useEffect(() => {
     const causeRipple = (e) => {
       const button = e.currentTarget;
-      console.log(button.clientHeight);
       const circ = document.createElement("span");
       const diameter = Math.max(button.clientWidth, button.clientHeight);
       const radius = diameter / 2;
@@ -44,7 +45,7 @@ const Menu = ({ open, setOpen }) => {
       button.appendChild(circ);
       setTimeout(() => {
         setOpen(false);
-      }, 300);
+      }, 200);
     };
     if (showMenu) {
       console.log(document.getElementsByClassName("menu-button"));
@@ -61,23 +62,25 @@ const Menu = ({ open, setOpen }) => {
 
   return (
     <div id='menu-container'>
-      <svg id='init' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'>
-        <circle cx='50' cy='50' r='50' fill='#80a2ac' />
-      </svg>
-
+      <img
+        id='init'
+        style={{ width: "100%", height: "100%" }}
+        src={circle}
+        alt='menu-bg'
+      />
       <div className={showMenu ? "menu" : "menu hide-menu"}>
         <div className='menu-button'>
-          <h1 style={{ color: "#24232c", fontSize: "56px" }}>
+          <h1 style={{ color: "#24232c", fontSize: "48px" }}>
             <i>ABOUT</i>
           </h1>
         </div>
         <div className='menu-button'>
-          <h1 style={{ color: "#24232c", fontSize: "56px" }}>
+          <h1 style={{ color: "#24232c", fontSize: "48px" }}>
             <i>PROJECTS</i>
           </h1>
         </div>{" "}
         <div className='menu-button'>
-          <h1 style={{ color: "#24232c", fontSize: "56px" }}>
+          <h1 style={{ color: "#24232c", fontSize: "48px" }}>
             <i>CONTACT</i>
           </h1>
         </div>
