@@ -52,7 +52,7 @@ const MobileLanding = ({ size }) => {
   };
   const handleTouchEnd = (e) => {
     console.log(start.time, e.timeStamp, start.time - e.timeStamp);
-    if (start.time - e.timeStamp < -160) {
+    if (start.time - e.timeStamp < -100) {
       handleScroll(null, start.y, e.changedTouches[0].clientY);
     }
   };
