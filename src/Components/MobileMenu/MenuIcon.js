@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Menu from "./Menu";
 
-const MenuIcon = ({ handleSetPage, setContainerVar, setTime }) => {
+const MenuIcon = ({ handleSetPage, setContainerVar, setTime, page }) => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -45,6 +45,7 @@ const MenuIcon = ({ handleSetPage, setContainerVar, setTime }) => {
         handleSetPage={handleSetPage}
         setContainerVar={setContainerVar}
         setTime={setTime}
+        page={page}
       />
     </>
   );

@@ -6,6 +6,9 @@
   --ani-time: 2.8s;
   --ani-delay: 0.2s;
 }
+html {
+  overflow-x: hidden;
+}
 
 /* ==============  GENERAL CSS ============== */
 
@@ -26,10 +29,12 @@ h2 {
 }
 
 p {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 300;
+  line-height: 22px;
+  overflow-wrap: break-word;
   color: var(--primary);
-  margin: 20px;
+  margin: 0px;
 }
 
 ::-webkit-scrollbar {
@@ -210,6 +215,7 @@ html ::-webkit-scrollbar-thumb {
   z-index: 1000;
   animation: logo var(--ani-time) var(--ani-delay) normal forwards;
   opacity: 0;
+  max-width: 70%;
 }
 
 /* ============== MENUICON.JS ============== */
@@ -300,7 +306,7 @@ html ::-webkit-scrollbar-thumb {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -365,20 +371,45 @@ span.ripple {
   transition: background-color 0.5s;
 }
 
+/* ============== PageWrapper.JS ============== */
+
+.outer-wrapper {
+  position: absolute;
+  top: 100px;
+  height: auto;
+  left: 0px;
+  width: 75vw;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+#outer-wrapper-bottom-border {
+  width: 8vw;
+  height: 1px;
+}
+
+#outer-wrapper-bottom-space {
+  height: 150px;
+  width: 8vw;
+  background-color: var(--secondary);
+  position: relative;
+}
+
 /* ============== MOBILELANDING.JS ============== */
 
 .app-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   width: 98.5vw;
-  overflow: hidden;
+  overflow: hidden !important;
   opacity: 0;
   transition: opacity 0.5s;
 }
 
-.visable {
+.visible {
   transition: opacity 0.5s;
   opacity: 1;
 }
@@ -394,21 +425,14 @@ span.ripple {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 88vh;
-  width: 100%;
+  height: auto;
   opacity: 0;
   animation: fade-in 1s ease-in normal forwards;
   background-color: var(--secondary);
-}
-
-.row-1 {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: baseline;
-  width: 100%;
-  min-height: 65px;
-  max-height: 70px;
+  position: fixed;
+  z-index: 995;
+  right: 0;
+  margin-top: 50px;
 }
 
 .letter-container {
@@ -417,26 +441,52 @@ span.ripple {
   align-items: center;
 }
 
+/* ============== HOME.JS ============== */
+
+.row-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: baseline;
+  width: 100%;
+  min-height: 35px;
+  max-height: 70px;
+}
 .name-letters {
   margin: 0;
   min-width: 70px;
 }
-
 .name-hr {
   min-width: 20px;
   min-height: 50px;
   margin: 0 25px 0 10px;
   background-color: var(--accent);
 }
-.landing-image {
-  width: 80%;
-  height: 91%;
-  background-image: url("/public/images/smile.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: right;
-  max-width: 650px;
-  transform: translateY(100px);
+
+/* ============== PAGETITLE.JS ============== */
+
+.row-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  width: 100%;
+  min-height: 35px;
+  max-height: 70px;
+}
+
+.title-letters {
+  margin: 0;
+  font-size: 35px;
+  min-width: 15vw;
+}
+
+.title-hr {
+  min-width: 21px;
+  min-height: 50px;
+  margin: 10px 2px 0 0;
+  align-self: center;
+  background-color: var(--accent);
 }
 
 /* ============== CSS ANIMATION KEYFRAMES ============== */
@@ -645,10 +695,10 @@ span.ripple {
     transform: scale(2, 4) translateX(-50vw);
   }
   70% {
-    transform: scale(2, 4.5) translateX(-55vw);
+    transform: scale(2, 5) translateX(-55vw);
   }
   100% {
-    transform: scale(2, 4.5) translateX(-65vw);
+    transform: scale(1, 4.5) translateX(-95vw);
   }
 }
 
@@ -657,4 +707,166 @@ span.ripple {
     transform: scale(4);
     opacity: 0;
   }
+}
+
+/* ============== LOADER.JS ============== */
+/* 
+Thanks to @lukehaas for this 
+https://projects.lukehaas.me/css-loaders/ 
+*/
+
+.loader {
+  font-size: 10px;
+  margin: auto auto;
+  text-indent: -9999em;
+  width: 11em;
+  justify-self: center;
+  height: 11em;
+  border-radius: 50%;
+  background: var(--accent);
+  background: -moz-linear-gradient(
+    left,
+    var(--accent) 10%,
+    rgba(211, 130, 57, 0) 42%
+  );
+  background: -webkit-linear-gradient(
+    left,
+    var(--accent) 10%,
+    rgba(211, 130, 57, 0) 42%
+  );
+  background: -o-linear-gradient(
+    left,
+    var(--accent) 10%,
+    rgba(211, 130, 57, 0) 42%
+  );
+  background: -ms-linear-gradient(
+    left,
+    var(--accent) 10%,
+    rgba(211, 130, 57, 0) 42%
+  );
+  background: linear-gradient(
+    to right,
+    var(--accent) 10%,
+    rgba(211, 130, 57, 0) 42%
+  );
+  position: relative;
+  -webkit-animation: load3 1.4s infinite linear;
+  animation: load3 1.4s infinite linear;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+.loader:before {
+  width: 50%;
+  height: 50%;
+  background: var(--accent);
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+}
+.loader:after {
+  background: var(--secondary);
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  content: "";
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* FOLDERS FOR PROJECTEXPLORER */
+
+/* Starter code for folder animation from Aditya Choudhary */
+/* https://codepen.io/Aditya2797/pen/qvoqNY */
+
+.folder-container {
+  text-align: center;
+  width: 40%;
+  margin: 20px 0;
+}
+
+.collection-stack {
+  margin: 5px auto;
+  width: 90px;
+  position: relative;
+  cursor: pointer;
+}
+.collection-view {
+  padding: 0 20px;
+  background: var(--primary);
+  z-index: 2;
+  position: relative;
+  height: 60px;
+  border-radius: 5px;
+  transition: 0.2s;
+  bottom: 0;
+  border-top-left-radius: 0;
+}
+.collection-view::before {
+  content: "";
+  position: absolute;
+  background: var(--primary);
+  width: 40%;
+  top: -10px;
+  left: 0px;
+  height: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.collection-shadow-4 {
+  position: absolute;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s ease-out;
+  bottom: 0px;
+  left: 0px;
+  z-index: 999;
+  background: var(--font-2);
+  transform-origin: bottom;
+}
+.collection-shadow-4::before {
+  content: "";
+  position: absolute;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  transition: 0.2s ease-out;
+  bottom: 0px;
+  left: 0px;
+  background: var(--font-2);
+  transform-origin: bottom;
+}
+.collection-stack:hover > .collection-shadow-4 {
+  transform: skewX(9deg);
+  height: 90%;
+}
+.collection-stack:hover > .collection-shadow-4::before {
+  transform: skewX(-18deg);
 }

@@ -9,7 +9,7 @@ const Intro = ({ bgCol, ovFlow }) => {
       <div className='div-box' id='br'></div>
       <div className='circle-path'>
         <div className='circle-container'>
-          <h1 id='logo'>M</h1>
+          <img id='logo' src={"/icons/Ms_Logo.svg"} alt='MS Logo' />
           <div id='halfclip-left' style={{ overflow: ovFlow }}>
             <div className='halfcircle' id='clipped'></div>
           </div>

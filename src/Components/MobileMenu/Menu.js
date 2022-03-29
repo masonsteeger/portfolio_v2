@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 
 import circle from "./menu.svg";
 
-const Menu = ({ open, setOpen, handleSetPage, setContainerVar, setTime }) => {
+const Menu = ({
+  open,
+  setOpen,
+  handleSetPage,
+  setContainerVar,
+  setTime,
+  page,
+}) => {
   const [showMenu, setShowMenu] = useState(false);
   const [menuOpacity, setMenuOpacity] = useState(false);
 
@@ -77,67 +84,74 @@ const Menu = ({ open, setOpen, handleSetPage, setContainerVar, setTime }) => {
       />
       {open ? (
         <div className={menuOpacity ? "menu" : "menu hide-menu"}>
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              setContainerVar("app-container");
-              setTimeout(() => {
-                handleSetPage(0);
-                setTime(Date.now());
-                console.log("changing page");
-              }, 500);
-            }}
-            className='menu-button'>
-            <h1 style={{ color: "#24232c", fontSize: "48px" }}>
-              <i>HOME</i>
-            </h1>
-          </div>
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              setContainerVar("app-container");
-              setTimeout(() => {
-                handleSetPage(1);
-                setTime(Date.now());
-                console.log("changing page");
-              }, 500);
-            }}
-            className='menu-button'>
-            <h1 style={{ color: "#24232c", fontSize: "48px" }}>
-              <i>PROJECTS</i>
-            </h1>
-          </div>
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              setContainerVar("app-container");
-              setTimeout(() => {
-                handleSetPage(2);
-                setTime(Date.now());
-                console.log("changing page");
-              }, 500);
-            }}
-            className='menu-button'>
-            <h1 style={{ color: "#24232c", fontSize: "48px" }}>
-              <i>ABOUT</i>
-            </h1>
-          </div>
-
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              setContainerVar("app-container");
-              setTimeout(() => {
-                handleSetPage(3);
-                setTime(Date.now());
-                console.log("changing page");
-              }, 500);
-            }}
-            className='menu-button'>
-            <h1 style={{ color: "#24232c", fontSize: "48px" }}>
-              <i>CONTACT</i>
-            </h1>
-          </div>
+          {page !== 0 ? (
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                setContainerVar("app-container");
+                setTimeout(() => {
+                  handleSetPage(0);
+                  setTime(Date.now());
+                  console.log("changing page");
+                }, 500);
+              }}
+              className='menu-button'>
+              <h1 style={{ color: "#24232c", fontSize: "48px" }}>
+                <i>HOME</i>
+              </h1>
+            </div>
+          ) : null}
+          {page !== 1 ? (
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                setContainerVar("app-container");
+                setTimeout(() => {
+                  handleSetPage(1);
+                  setTime(Date.now());
+                  console.log("changing page");
+                }, 500);
+              }}
+              className='menu-button'>
+              <h1 style={{ color: "#24232c", fontSize: "48px" }}>
+                <i>PROJECTS</i>
+              </h1>
+            </div>
+          ) : null}
+          {page !== 2 ? (
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                setContainerVar("app-container");
+                setTimeout(() => {
+                  handleSetPage(2);
+                  setTime(Date.now());
+                  console.log("changing page");
+                }, 500);
+              }}
+              className='menu-button'>
+              <h1 style={{ color: "#24232c", fontSize: "48px" }}>
+                <i>ABOUT</i>
+              </h1>
+            </div>
+          ) : null}
+          {page !== 3 ? (
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                setContainerVar("app-container");
+                setTimeout(() => {
+                  handleSetPage(3);
+                  setTime(Date.now());
+                  console.log("changing page");
+                }, 500);
+              }}
+              className='menu-button'>
+              <h1 style={{ color: "#24232c", fontSize: "48px" }}>
+                <i>CONTACT</i>
+              </h1>
+            </div>
+          ) : null}
         </div>
       ) : (
         <></>
