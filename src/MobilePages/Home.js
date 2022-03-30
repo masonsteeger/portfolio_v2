@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Home = () => {
+  const [opVar, setOpVar] = useState(0);
+
+  useEffect(() => {
+    const time = () =>
+      setTimeout(() => {
+        setOpVar(1);
+      }, 3500);
+    const myTime = time();
+    return () => {
+      clearTimeout(myTime);
+    };
+  }, []);
+
   return (
     <>
       <div className='landing-name-container'>
@@ -38,11 +51,10 @@ const Home = () => {
           <div className='name-hr'></div>
           <h1 className='name-letters'>R</h1>
         </div>
-        <div style={{ width: "100vw" }}>
-          <p>Welcome!</p>
-        </div>
-        <div>
-          <p>Tap the menu or drag and hold down to explore</p>
+        <div id='instructions' style={{ opacity: opVar }}>
+          <p>
+            Tap the menu or drag and <br /> hold down to explore
+          </p>
         </div>
       </div>
     </>

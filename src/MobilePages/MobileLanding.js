@@ -22,32 +22,33 @@ const MobileLanding = ({ size }) => {
   const appRef = useRef();
 
   const handleSetPage = (direct, dif) => {
-    setPage((p) => {
-      switch (true) {
-        case typeof direct === "number":
-          p = direct;
-          break;
-        case dif > 0 && page >= 3:
-          p = 0;
-          break;
-        case dif < 0 && page === 0:
-          p = 3;
-          break;
-        case dif < 0:
-          p--;
-          break;
-        case dif > 0:
-          p++;
-          break;
-        default:
-          break;
-      }
-      console.log(p);
-      window.scrollTo(0, 0);
-      setContainerVar("app-container visible");
-      setClassVar("outer-wrapper visible");
-      return p;
-    });
+    setTimeout(() => {
+      setPage((p) => {
+        switch (true) {
+          case typeof direct === "number":
+            p = direct;
+            break;
+          case dif > 0 && page >= 3:
+            p = 0;
+            break;
+          case dif < 0 && page === 0:
+            p = 3;
+            break;
+          case dif < 0:
+            p--;
+            break;
+          case dif > 0:
+            p++;
+            break;
+          default:
+            break;
+        }
+        console.log(p);
+        setContainerVar("app-container visible");
+        setClassVar("outer-wrapper visible");
+        return p;
+      });
+    }, 300);
   };
 
   const causeRipple = () => {
@@ -76,6 +77,7 @@ const MobileLanding = ({ size }) => {
   };
 
   const handleTouchStart = (e) => {
+    clearTimeout(timerID);
     setStart((p) => {
       p = { y: e.changedTouches[0].clientY, time: e.timeStamp };
       return p;
@@ -84,20 +86,30 @@ const MobileLanding = ({ size }) => {
   };
   const timer = () =>
     setTimeout(() => {
-      if (timerID) {
+      if (
+        timerID &&
+        window.scrollY + window.innerHeight >=
+          document.documentElement.scrollHeight
+      ) {
+        var e = new TouchEvent("touchend");
+        window.dispatchEvent(e);
         causeRipple();
+        handleScroll();
       }
-    }, 700);
+    }, 850);
   const handleTouchEnd = (e) => {
-    if (start.time - e.timeStamp < -700) {
-      handleScroll(null, start.y, e.changedTouches[0].clientY);
+    console.log(
+      window.scrollY + window.innerHeight,
+      document.documentElement.scrollHeight
+    );
+    if (start.time - e.timeStamp < -850) {
     } else {
       console.log("setting to false");
       clearTimeout(timerID);
     }
   };
 
-  const handleScroll = (e, start, end) => {
+  const handleScroll = () => {
     const element = document.documentElement;
     // if (
     //   window.innerHeight + window.scrollY >= element.scrollHeight ||
@@ -122,22 +134,14 @@ const MobileLanding = ({ size }) => {
         return p;
       });
       console.log("handling scroll");
-      let dif;
-      if (e) {
-        dif = e.deltaY;
-      } else {
-        dif = start - end;
-      }
-      console.log(dif);
-      if (75 < dif || 75 < e.deltaY) {
-        setContainerVar("app-container");
-        setClassVar("outer-wrapper");
-        setTimeout(() => {
-          window.scroll(0, 0);
-          handleSetPage("null", dif);
-          console.log("changing page");
-        }, 500);
-      }
+
+      setContainerVar("app-container");
+      setClassVar("outer-wrapper");
+      setTimeout(() => {
+        window.scroll(0, 0);
+        handleSetPage("null", 1);
+        console.log("changing page");
+      }, 500);
     } else {
       console.log("too quick!!");
 
@@ -146,12 +150,12 @@ const MobileLanding = ({ size }) => {
   };
 
   useEffect(() => {
-    window.addEventListener("wheel", handleScroll);
+    // window.addEventListener("wheel", handleScroll);
     window.addEventListener("touchstart", handleTouchStart);
     window.addEventListener("touchend", handleTouchEnd);
 
     return () => {
-      window.removeEventListener("wheel", handleScroll);
+      // window.removeEventListener("wheel", handleScroll);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
     };
@@ -168,11 +172,7 @@ const MobileLanding = ({ size }) => {
 
       <Logo />
       <div className={containerVar} style={{ overflow: "hidden" }}>
-        {page === 0 ? (
-          <Suspense fallback={<Loader />}>
-            <Home classVar={classVar} />
-          </Suspense>
-        ) : null}
+        {page === 0 ? <Home classVar={classVar} /> : null}
         {page === 1 ? (
           <Suspense fallback={<Loader />}>
             <PageWrapper

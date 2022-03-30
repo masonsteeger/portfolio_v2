@@ -75,7 +75,7 @@ const Menu = ({
   }, [showMenu]);
 
   return (
-    <div id='menu-container'>
+    <div id='menu-container' style={open ? {} : { pointerEvents: "none" }}>
       <img
         id='init'
         style={{ width: "100%", height: "100%" }}

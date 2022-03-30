@@ -1,9 +1,11 @@
 import React, { useEffect, useState, Suspense } from "react";
-import Intro from "./Intro";
+// import Intro from "./Intro";
 import Loader from "./General/Loader";
 
 import useWindowSize from "./Hooks/useWindowSize";
 import "./App.css";
+
+const Intro = React.lazy(() => import("./MobilePages/Intro"));
 
 const MobileLanding = React.lazy(() => import("./MobilePages/MobileLanding"));
 // import CustomScroll from "./General/CustomScroll";
@@ -15,23 +17,22 @@ function App() {
   const [bottomPull, setBottomPull] = useState("-50vh");
 
   const size = useWindowSize();
-  useEffect(() => {
-    setTimeout(() => {
-      setOvFlow("visible");
-      setBgCol("#24232c");
-    }, 2300);
-    setTimeout(() => {
-      setAnimation(false);
-    }, 3200);
-  }, []);
 
   return (
     <>
       <div id='outer' className='App' style={{ overflow: "hidden" }}>
         {animation ? (
-          <Intro ovFlow={ovFlow} bgCol={bgCol} />
+          <Suspense fallback={<Loader />}>
+            <Intro
+              ovFlow={ovFlow}
+              bgCol={bgCol}
+              setOvFlow={setOvFlow}
+              setBgCol={setBgCol}
+              setAnimation={setAnimation}
+            />
+          </Suspense>
         ) : (
-          <Suspense fallback={<></>}>
+          <Suspense fallback={<Loader />}>
             <MobileLanding size={size} />
           </Suspense>
         )}
