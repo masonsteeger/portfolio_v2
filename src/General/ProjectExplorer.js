@@ -63,6 +63,15 @@ const ProjectExplorer = () => {
   ]);
   const [folderOpen, setFolderOpen] = useState(null);
   const [selectedPage, setSelectedPage] = useState(null);
+  const [folderToggle, setFolderToggle] = useState(null);
+
+  const handleFolderOpen = (i) => {
+    if (folderOpen === i && typeof selectedPage !== "number") {
+      setFolderOpen(null);
+    } else if (typeof selectedPage !== "number") {
+      setFolderOpen(i);
+    }
+  };
 
   // useEffect(() => {
   //   setSelectedPage(null);
@@ -93,27 +102,43 @@ const ProjectExplorer = () => {
             <div
               key={`folder-${i}`}
               className={
-                folderOpen === i
+                folderToggle === i
                   ? "open-bg folder-container"
                   : "folder-container"
               }
               onClick={() => {
-                if (folderOpen === i && typeof selectedPage !== "number") {
-                  setFolderOpen(null);
+                if (folderToggle === i && typeof selectedPage !== "number") {
+                  setFolderToggle(null);
                 } else if (typeof selectedPage !== "number") {
-                  setFolderOpen(i);
+                  setFolderToggle(i);
+                }
+                const col = document.getElementsByClassName("file-container");
+                console.log(col);
+                if (col.length > 0) {
+                  let len = col.length;
+                  while (len > 0) {
+                    col[len - 1].setAttribute("id", "file-container-exit");
+                    len--;
+                  }
+                  const delay = col.length * 200 + 100;
+                  console.log(delay);
+                  setTimeout(() => {
+                    handleFolderOpen(i);
+                  }, delay);
+                } else {
+                  handleFolderOpen(i);
                 }
               }}>
               <div className='collection-stack'>
                 <div className='collection-view'></div>
                 <div
                   className={
-                    folderOpen === i
+                    folderToggle === i
                       ? "collection-shadow-4 collection-shadow-4-open"
                       : "collection-shadow-4"
                   }></div>
               </div>
-              <p className={folderOpen === i ? "folder-text" : null}>
+              <p className={folderToggle === i ? "folder-text" : null}>
                 {p.folder}
               </p>
             </div>
@@ -129,13 +154,18 @@ const ProjectExplorer = () => {
         }}>
         {typeof folderOpen === "number"
           ? proj[folderOpen].files.map((file, i) => {
+              const delay =
+                folderToggle === folderOpen
+                  ? (i + 1) * 0.2
+                  : (proj[folderOpen].files.length - i) * 0.2;
               return (
                 <div
                   onClick={() => {
                     if (typeof selectedPage !== "number") setSelectedPage(i);
                   }}
                   className='file-container'
-                  key={`file-${i}`}>
+                  style={{ animationDelay: delay + "s" }}
+                  key={`folder-${folderOpen}-file-${i}`}>
                   <div
                     className={selectedPage === i ? "paper expand" : "paper"}>
                     <div

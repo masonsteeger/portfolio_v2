@@ -415,7 +415,7 @@ span.ripple {
 }
 
 #img-1 {
-  background-image: url("/public/images/smile.jpg");
+  background-image: url("/public/images/smile.webp");
   background-size: cover;
   background-position: right;
 }
@@ -504,11 +504,20 @@ span.ripple {
 /* ============== CSS ANIMATION KEYFRAMES ============== */
 
 @keyframes fade-in {
-  from {
+  0% {
     opacity: 0;
   }
-  to {
+  100% {
     opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
@@ -860,6 +869,19 @@ https://projects.lukehaas.me/css-loaders/
   width: 43%;
   margin: 20px 3.5% 0;
   text-align: center;
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+#file-container-exit {
+  opacity: 1;
+  animation-name: fade-out;
+  animation-duration: 0.2s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
 }
 
 .paper {
@@ -1005,6 +1027,24 @@ https://projects.lukehaas.me/css-loaders/
   border-radius: 20px;
 }
 
+#selected-proj-exit {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: ghostwhite;
+  z-index: 2001;
+  pointer-events: none;
+  opacity: 1;
+  animation-name: fade-out;
+  animation-duration: 0.5s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  border-radius: 20px;
+}
+
 .project-x {
   position: absolute;
   z-index: 2002;
@@ -1026,8 +1066,11 @@ https://projects.lukehaas.me/css-loaders/
     box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
   }
 
-  100% {
+  99% {
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: scale(1);
   }
 }

@@ -74,6 +74,12 @@ const MobileLanding = ({ size }) => {
       ripple.remove();
     }
     element.appendChild(circ);
+
+    setTimeout(() => {
+      if (ripple) {
+        ripple.remove();
+      }
+    }, 2000);
   };
 
   const handleTouchStart = (e) => {
@@ -196,16 +202,17 @@ const MobileLanding = ({ size }) => {
                   margin: "0 0 20px",
                   borderRadius: "25px",
                 }}
-                alt='Me'
+                alt='Mason Steeger'
               />
               <p style={{ paddingBottom: "70px" }}>
                 I’m Mason Steeger and I've been interested in computer
                 programming since childhood. In August of 2020 I began studying
                 Full-Stack Development at General Assembly. Since then, I’ve
                 worked with LG and Samsung through SJ Design Studio to develop
-                static web pages and content management systems. I’m typically
-                found jamming with friends and playing video games outside of my
-                professional practice.
+                static web pages and content management systems using a range of
+                technologies including React and Amazon Web Services. I’m
+                typically found jamming with friends and playing video games
+                outside of my professional practice.
               </p>
             </PageWrapper>
           </Suspense>
@@ -216,11 +223,74 @@ const MobileLanding = ({ size }) => {
               title={"CONTACT"}
               classVar={classVar}
               styles={{ textAlign: "left" }}>
-              <p style={{ paddingBottom: "70px" }}>
-                This is where i will eventually put all of my contact info and
-                probably my github/linkedIn stuff. Maybe an email form or
-                something? idrk.
+              <p>
+                Thank you for taking the time to explore my portfolio! You can
+                find more information about me via the following links:
               </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  alignItems: "flex-start",
+                  flexWrap: "wrap",
+                  height: "100%",
+                  padding: "40px 0",
+                }}>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}>
+                  <img
+                    src={"./icons/cv.svg"}
+                    style={{
+                      width: "65%",
+                      marginBottom: "10px",
+                    }}
+                    alt='CV Link'
+                  />
+                  <p style={{ marginBottom: "20px" }}>Resume</p>
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}>
+                  <img
+                    src={"./icons/linked.svg"}
+                    style={{
+                      width: "60%",
+                      marginBottom: "10px",
+                    }}
+                    alt='Linkedin Link'
+                  />
+                  <p style={{ marginBottom: "20px" }}>LinkedIn</p>
+                </div>
+                <div
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}>
+                  <img
+                    src={"./icons/git.svg"}
+                    style={{
+                      width: "60%",
+                      marginBottom: "10px",
+                    }}
+                    alt='Github Link'
+                  />
+                  <p style={{ marginBottom: "20px" }}>Github</p>
+                </div>
+              </div>
             </PageWrapper>
           </Suspense>
         ) : null}
