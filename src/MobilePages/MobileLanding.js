@@ -1,25 +1,34 @@
-import React, { useEffect, useState, useRef, Suspense } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import Loader from "../General/Loader";
 import MenuIcon from "../Components/MobileMenu/MenuIcon";
 import Logo from "../Components/Logo";
 import ProjectExplorer from "../General/ProjectExplorer";
 
-const Home = React.lazy(() => import("./Home"));
-const PageWrapper = React.lazy(() => import("../Components/PageWrapper"));
+const MobileHome = React.lazy(() => import("./MobileHome"));
+const MobilePageWrapper = React.lazy(() =>
+  import("../Components/MobilePageWrapper")
+);
 
 let timerID;
 
-const MobileLanding = ({ size }) => {
-  const [descriptor, setDescriptor] = useState("");
-  const [arrPos, setArrPos] = useState(0);
+const MobileLanding = ({ ...props }) => {
   const [start, setStart] = useState();
   const [time, setTime] = useState(Date.now() - 2000);
   const [containerVar, setContainerVar] = useState("app-container visible");
-  const [page, setPage] = useState(0);
-  const [nextPage, setNextPage] = useState(false);
   const [classVar, setClassVar] = useState("outer-wrapper");
+  const [open, setOpen] = useState(false);
 
-  const appRef = useRef();
+  const {
+    data,
+    page,
+    setPage,
+    folderOpen,
+    setFolderOpen,
+    selectedPage,
+    setSelectedPage,
+    folderToggle,
+    setFolderToggle,
+  } = props;
 
   const handleSetPage = (direct, dif) => {
     setTimeout(() => {
@@ -46,6 +55,7 @@ const MobileLanding = ({ size }) => {
         console.log(p);
         setContainerVar("app-container visible");
         setClassVar("outer-wrapper visible");
+        window.scrollTo(null, 0);
         return p;
       });
     }, 300);
@@ -62,7 +72,7 @@ const MobileLanding = ({ size }) => {
       width: `${diameter}px`,
       height: `${diameter}px`,
       left: `${window.innerWidth / 2 - diameter / 2}px`,
-      top: `calc(100vh - ${diameter / 2})px`,
+      bottom: `calc(100vh - ${diameter / 2})px`,
     };
 
     Object.assign(circ.style, myStyles);
@@ -76,10 +86,9 @@ const MobileLanding = ({ size }) => {
     element.appendChild(circ);
 
     setTimeout(() => {
-      if (ripple) {
-        ripple.remove();
-      }
-    }, 2000);
+      circ.style.height = 0;
+      circ.remove();
+    }, 1000);
   };
 
   const handleTouchStart = (e) => {
@@ -117,34 +126,13 @@ const MobileLanding = ({ size }) => {
 
   const handleScroll = () => {
     const element = document.documentElement;
-    // if (
-    //   window.innerHeight + window.scrollY >= element.scrollHeight ||
-    //   window.scrollY === 0
-    // ) {
-    //   let currentTime = Date.now();
-
-    //   setTimeout(() => {
-    //     if (currentTime + 1000 - Date.now() < 0) {
-    //       setNextPage(true);
-    //       console.log("NEXT1!!");
-    //     } else {
-    //       console.log("TOO SLOW");
-    //       setNextPage(false);
-    //     }
-    //   }, 1000);
-    // }
     if (time + 1000 - Date.now() < 0) {
       setTime(Date.now());
-      setNextPage((p) => {
-        p = false;
-        return p;
-      });
       console.log("handling scroll");
 
       setContainerVar("app-container");
       setClassVar("outer-wrapper");
       setTimeout(() => {
-        window.scroll(0, 0);
         handleSetPage("null", 1);
         console.log("changing page");
       }, 500);
@@ -156,12 +144,10 @@ const MobileLanding = ({ size }) => {
   };
 
   useEffect(() => {
-    // window.addEventListener("wheel", handleScroll);
     window.addEventListener("touchstart", handleTouchStart);
     window.addEventListener("touchend", handleTouchEnd);
 
     return () => {
-      // window.removeEventListener("wheel", handleScroll);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchend", handleTouchEnd);
     };
@@ -174,29 +160,39 @@ const MobileLanding = ({ size }) => {
         setContainerVar={setContainerVar}
         setTime={setTime}
         page={page}
+        open={open}
+        setOpen={setOpen}
       />
 
-      <Logo />
+      <Logo open={open} />
       <div className={containerVar} style={{ overflow: "hidden" }}>
-        {page === 0 ? <Home classVar={classVar} /> : null}
+        {page === 0 ? <MobileHome classVar={classVar} data={data} /> : null}
         {page === 1 ? (
           <Suspense fallback={<Loader />}>
-            <PageWrapper
-              title={"PROJECTS"}
+            <MobilePageWrapper
+              title={data.pages[1].title.toUpperCase()}
               classVar={classVar}
               styles={{ textAlign: "left" }}>
-              <ProjectExplorer />
-            </PageWrapper>
+              <ProjectExplorer
+                data={data.pages[1]}
+                folderOpen={folderOpen}
+                setFolderOpen={setFolderOpen}
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+                folderToggle={folderToggle}
+                setFolderToggle={setFolderToggle}
+              />
+            </MobilePageWrapper>
           </Suspense>
         ) : null}
         {page === 2 ? (
           <Suspense fallback={<Loader />}>
-            <PageWrapper
-              title={"ABOUT"}
+            <MobilePageWrapper
+              title={data.pages[2].title.toUpperCase()}
               classVar={classVar}
               styles={{ textAlign: "left" }}>
               <img
-                src={"./images/smile.webp"}
+                src={data.pages[2].img}
                 style={{
                   width: "100%",
                   margin: "0 0 20px",
@@ -204,94 +200,42 @@ const MobileLanding = ({ size }) => {
                 }}
                 alt='Mason Steeger'
               />
-              <p style={{ paddingBottom: "70px" }}>
-                I’m Mason Steeger and I've been interested in computer
-                programming since childhood. In August of 2020 I began studying
-                Full-Stack Development at General Assembly. Since then, I’ve
-                worked with LG and Samsung through SJ Design Studio to develop
-                static web pages and content management systems using a range of
-                technologies including React and Amazon Web Services. I’m
-                typically found jamming with friends and playing video games
-                outside of my professional practice.
-              </p>
-            </PageWrapper>
+              <p style={{ paddingBottom: "70px" }}>{data.pages[2].about}</p>
+            </MobilePageWrapper>
           </Suspense>
         ) : null}
         {page === 3 ? (
           <Suspense fallback={<Loader />}>
-            <PageWrapper
-              title={"CONTACT"}
+            <MobilePageWrapper
+              title={data.pages[3].title.toUpperCase()}
               classVar={classVar}
               styles={{ textAlign: "left" }}>
-              <p>
-                Thank you for taking the time to explore my portfolio! You can
-                find more information about me via the following links:
-              </p>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  alignItems: "flex-start",
-                  flexWrap: "wrap",
-                  height: "100%",
-                  padding: "40px 0",
-                }}>
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}>
-                  <img
-                    src={"./icons/cv.svg"}
-                    style={{
-                      width: "65%",
-                      marginBottom: "10px",
-                    }}
-                    alt='CV Link'
-                  />
-                  <p style={{ marginBottom: "20px" }}>Resume</p>
-                </div>
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}>
-                  <img
-                    src={"./icons/linked.svg"}
-                    style={{
-                      width: "60%",
-                      marginBottom: "10px",
-                    }}
-                    alt='Linkedin Link'
-                  />
-                  <p style={{ marginBottom: "20px" }}>LinkedIn</p>
-                </div>
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}>
-                  <img
-                    src={"./icons/git.svg"}
-                    style={{
-                      width: "60%",
-                      marginBottom: "10px",
-                    }}
-                    alt='Github Link'
-                  />
-                  <p style={{ marginBottom: "20px" }}>Github</p>
-                </div>
+              <p style={{ marginBottom: "25px" }}>{data.pages[3].thanks}</p>
+              <div className='content-container'>
+                {data.pages[3].links.map((item, i) => {
+                  return (
+                    <>
+                      <a
+                        className='contact-link'
+                        rel='noreferrer'
+                        href={item.link}
+                        target='_blank'>
+                        <img
+                          src={item.src}
+                          style={{
+                            width: item.width,
+                            marginBottom: "10px",
+                          }}
+                          alt={item.alt}
+                        />
+                      </a>
+                      <p className='contact-link-text'>{item.text}</p>
+                    </>
+                  );
+                })}
               </div>
-            </PageWrapper>
+              <div style={{ height: "40px" }}></div>
+            </MobilePageWrapper>
           </Suspense>
         ) : null}
       </div>

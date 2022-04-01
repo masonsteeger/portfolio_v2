@@ -1,6 +1,6 @@
 import React from "react";
 
-const PageTitle = ({ title }) => {
+const MobilePageTitle = ({ title }) => {
   return (
     <div className='landing-name-container' style={{ marginTop: "50px" }}>
       {title.split("").map((char, i) => {
@@ -17,4 +17,4 @@ const PageTitle = ({ title }) => {
   );
 };
 
-export default PageTitle;
+export default MobilePageTitle;

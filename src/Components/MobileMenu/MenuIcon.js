@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Menu from "./Menu";
+import MobileMenu from "./MobileMenu";
 
-const MenuIcon = ({ handleSetPage, setContainerVar, setTime, page }) => {
-  const [open, setOpen] = useState(false);
-
+const MenuIcon = ({
+  handleSetPage,
+  setContainerVar,
+  setTime,
+  page,
+  open,
+  setOpen,
+}) => {
   useEffect(() => {
     [0, 1, 2].map((el, i) => {
       if (open && document.getElementById(`x-${i + 1}-off`)) {
@@ -39,7 +44,7 @@ const MenuIcon = ({ handleSetPage, setContainerVar, setTime, page }) => {
         </div>
       </div>
 
-      <Menu
+      <MobileMenu
         open={open}
         setOpen={setOpen}
         handleSetPage={handleSetPage}

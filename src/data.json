@@ -1,0 +1,123 @@
+{
+  "pages": [
+    {
+      "title": "Home",
+      "firstName": "Mason",
+      "lastName": "Steeger",
+      "tagline": "software developer"
+    },
+    {
+      "title": "Projects",
+      "projects": [
+        {
+          "folder": "Professional",
+          "files": [
+            {
+              "title": "VKRS Content Creator",
+              "desc": "A content management system that was used to create the Smart Simulators for Samsung. Frontend with React using multiple packages such as MUI and Fabric.js with a serverless backend hosted via multiple AWS services including DynamoDB, Cloudfront, S3, Lambda, and many more! I have been working on this project since my start at SJ Design and have been involved in most parts of this current iteration.",
+              "liveLink": "https://vkrscontent.com/"
+            },
+            {
+              "title": "LG webOS",
+              "desc": "A static website built with React to show off the features of LG's new webOS TV operating system. I was mainly in charge of building out components that could be used multiple times and altered slightly by using a large json object containing each page's data.",
+              "liveLink": "https://vkrscontent.com/webostv/"
+            },
+            {
+              "title": "Samsung Smart Simulators",
+              "desc": "Samsung phone simulators built using earlier versions of VKRS with some hard coded edits for features we had not implemented in the VKRS Content Creator. These mainly show the template of our project and the power of the conent management system we have been building.",
+              "liveLink": "https://www.samsung.com/us/support/simulators/"
+            }
+          ]
+        },
+        {
+          "folder": "Bootcamp",
+          "files": [
+            {
+              "title": "Pokedex",
+              "desc": "My very first front-end build using HTML, CSS, Javascript, jQuery, and AJAX calls from a the PokeApi. Search up your favorite Pokemon and get some stats, or check their Evolution Chain!",
+              "gitLink": "https://github.com/masonsteeger/masonsteeger.github.io/tree/master/pokedex",
+              "liveLink": "https://masonsteeger.github.io/pokedex/"
+            },
+            {
+              "title": "RocketClipz",
+              "desc": "My first full-stack build using MongoDB, Express.js, EJS, and Node.js. Share some of your best goals or saves from the hit car-soccer game Rocket League!",
+              "gitLink": "https://github.com/masonsteeger/project2",
+              "liveLink": "https://rocketclipz.herokuapp.com/home"
+            },
+            {
+              "title": "GitRecipe",
+              "desc": "A recipe sharing app and first full stack group project using MongoDB, Express.js, React, and Node.js. Create and share recipes or search up some tags for some dinner ideas tonight!",
+              "gitLink": "https://github.com/masonsteeger/gitrecipev2",
+              "liveLink": "https://git-recipez.herokuapp.com/"
+            },
+            {
+              "title": "Jokez",
+              "desc": " joke app and my second group project with PostGres, PHP, React, and MAMP. The app allows a user to create jokes and vote on the site! Careful, because if a joke gets less than -10 votes, it's deleted from the database!",
+              "gitLink": "https://github.com/masonsteeger/jokez",
+              "liveLink": "https://gitjokez.herokuapp.com/"
+            },
+            {
+              "title": "Twitter+1",
+              "desc": "Twitter Clone using the PERN stack (and the Bulma CSS framework) with one key change... max characters allowed in a tweet are 281!",
+              "gitLink": "https://github.com/masonsteeger/twitterplusone",
+              "liveLink": "https://twitterplusone.herokuapp.com/login"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "About",
+      "img": "./images/smile.webp",
+      "about": "I'm Mason Steeger and I've been interested in computers and technology since childhood. In August of 2020 I began studying Full-Stack Development at General Assembly. Since then, I've worked with LG and Samsung through SJ Design Studio to develop static web pages and content management systems using a range of technologies including React and Amazon Web Services. Outside of my professional practice I'm typically found jamming with friends and playing video games."
+    },
+    {
+      "title": "Contact",
+      "thanks": "Thank you for taking the time to explore my portfolio! You can find more information about me via the following links:",
+      "links": [
+        {
+          "src": "/icons/git.svg",
+          "alt": "Github Link",
+          "width": "60%",
+          "link": "https://github.com/masonsteeger",
+          "text": "Github"
+        },
+        {
+          "src": "./icons/cv.svg",
+          "alt": "CV Link",
+          "width": "65%",
+          "link": "/files/resume.pdf",
+          "text": "Resume"
+        },
+        {
+          "src": "./icons/linked.svg",
+          "alt": "Linkedin Link",
+          "width": "60%",
+          "link": "https://www.linkedin.com/in/mason-steeger/",
+          "text": "LinkedIn"
+        }
+      ]
+    }
+  ],
+  "menu": [
+    {
+      "pageName": "Home",
+      "icon": "/icons/home.png"
+    },
+    {
+      "pageName": "Projects",
+      "icon": "/icons/projects.png"
+    },
+    {
+      "pageName": "About",
+      "icon": "/icons/about.png"
+    },
+    {
+      "pageName": "Contact",
+      "icon": "/icons/contact.png"
+    }
+  ],
+  "meta": {
+    "mainLogo": "/icons/Ms_Logo-accent.svg"
+  }
+}

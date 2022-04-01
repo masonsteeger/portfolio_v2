@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import circle from "./menu.svg";
 
-const Menu = ({
+const MobileMenu = ({
   open,
   setOpen,
   handleSetPage,
@@ -160,4 +160,4 @@ const Menu = ({
   );
 };
 
-export default Menu;
+export default MobileMenu;

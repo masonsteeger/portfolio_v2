@@ -1,18 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const LogoComp = () => {
+const LogoComp = ({ open }) => {
   return (
-    <img
-      src={"icons/Ms_Logo-accent.svg"}
-      alt='MS Logo'
-      style={{
-        position: "fixed",
-        zIndex: "1000",
-        width: "50px",
-        top: "10px",
-        left: "calc(50vw - 25px)",
-      }}
-    />
+    <img src={"icons/Ms_Logo-accent.svg"} alt='MS Logo' className='top-logo' />
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import PageTitle from "../Components/PageTitle";
+import MobilePageTitle from "./MobilePageTitle";
 
-const PageWrapper = ({ ...props }) => {
+const MobilePageWrapper = ({ ...props }) => {
   return (
     <>
       <div
@@ -13,7 +13,7 @@ const PageWrapper = ({ ...props }) => {
           zIndex: "991",
           overflow: "hidden",
         }}></div>
-      <PageTitle title={props.title} />
+      <MobilePageTitle title={props.title} />
       <div
         className={props.classVar}
         style={{ ...props.styles, marginLeft: "20px", maxHeight: "110%" }}>
@@ -23,4 +23,4 @@ const PageWrapper = ({ ...props }) => {
   );
 };
 
-export default PageWrapper;
+export default MobilePageWrapper;
