@@ -7,6 +7,7 @@ const DesktopHome = ({ data }) => {
         <h1>Mason Steeger</h1>
         <h2>software developer</h2>
         <img src={data.meta.mainLogo} height='250px' alt='logo' />
+        <h2>Desktop site coming soon!</h2>
       </div>
     </div>
   );
