@@ -118,6 +118,19 @@
     }
   ],
   "meta": {
-    "mainLogo": "/icons/Ms_Logo-accent.svg"
+    "mainLogo": "/icons/Ms_Logo-accent.svg",
+    "techStack": [
+      "aws",
+      "css",
+      "git",
+      "html",
+      "javascript",
+      "node",
+      "nosql",
+      "php",
+      "react",
+      "serverless",
+      "sql"
+    ]
   }
 }
