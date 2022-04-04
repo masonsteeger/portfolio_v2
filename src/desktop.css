@@ -1,4 +1,17 @@
-/* DESKTOPLANDING.JS */
+:root {
+  --primary: #dce8eb;
+  --secondary: #24232c;
+  --font-2: #80a2ac;
+  --accent: #d38239;
+  --ani-time: 2.8s;
+  --ani-delay: 0.2s;
+}
+
+.desktop-wrapper {
+  height: 90vh;
+}
+
+/* ============== DESKTOPLANDING.JS ============== */
 
 .desktop-app-container {
   width: 100vw;
@@ -13,7 +26,7 @@
 }
 
 #desktop-content-container {
-  width: 100%;
+  width: 95%;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -21,7 +34,77 @@
   overflow-y: scroll;
 }
 
-/* DESKTOPMENU.JS */
+#inner-desktop-content {
+  height: min-content;
+  width: min-content;
+  overflow: scroll;
+}
+
+.body-text {
+  width: 50%;
+  padding-right: 10%;
+  line-height: normal;
+  font-size: clamp(1em, 2vw, 2em);
+}
+
+.desktop-about-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#about-img-desktop {
+  width: 40%;
+  height: 40%;
+  border-radius: 25px;
+  min-height: 300px;
+  min-width: 300px;
+}
+
+.external-link-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 937px) {
+  .body-text {
+    width: 80%;
+    text-align: center !important;
+    padding: 0 0 20px 0;
+  }
+
+  .desktop-about-container {
+    justify-content: center;
+  }
+  #about-img-desktop {
+    width: 80%;
+  }
+  #about-wrapper {
+    height: 70vh;
+  }
+}
+
+/* ============== CUSTOMSCROLL.JS ============== */
+
+#scroll-track {
+  width: 5px;
+  background-color: transparent;
+  position: fixed;
+  right: 0px;
+  top: 0.75vh;
+}
+
+#scrollbar {
+  width: 5px;
+  position: relative;
+  border-radius: 25px;
+  transition: background-color 0.5s;
+}
+
+/* ============== DESKTOPMENU.JS ============== */
 .desktop-menu-container {
   position: fixed;
   width: 15vw;
@@ -39,14 +122,10 @@
 .desktop-menu-icon {
   width: clamp(40px, 10vw, 63px);
   margin: 20px auto;
+  transition: transform 0.5s;
 }
 
-.desktop-home-container {
-  text-align: left;
-  height: 400vh;
-}
-
-/* DESKTOPHOME.JS */
+/* ============== DESKTOPHOME.JS ============== */
 
 #desktop-name {
   font-size: clamp(1em, 10vw, 8em);
@@ -63,6 +142,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 80vw;
+  text-align: center;
 }
 
 .stack-logo-container {
@@ -80,7 +163,7 @@
 .subtitle-container {
   display: flex;
   flex-direction: column;
-  justify-content: center space-around;
+  justify-content: center;
   align-items: center;
   width: clamp(292px, 46vw, 729px);
 }
@@ -88,4 +171,52 @@
 .stack-logo {
   width: clamp(40px, 5vw, 80px);
   margin-bottom: 7px;
+}
+
+/* ============== PROJECTEXPLORER.JS ============== */
+.desktop-project-explorer {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  padding-bottom: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.desktop-folders {
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.desktop-folder-container {
+  text-align: center;
+  margin: 10px 20px;
+  padding: 20px;
+  pointer-events: all;
+  overflow: hidden;
+}
+
+/* ============== DESKTOPTITLE.JS ============== */
+
+.desktop-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  margin: auto;
+}
+.desktop-titles {
+  font-size: clamp(2em, 5vw, 4.5em);
+  margin: 20px;
+}
+
+.desktop-title-bar {
+  height: clamp(15px, 40vw, 30px);
+  background-color: #d38239;
+  width: 100%;
 }

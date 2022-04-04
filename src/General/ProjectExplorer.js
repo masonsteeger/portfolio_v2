@@ -11,6 +11,9 @@ const ProjectExplorer = ({ ...props }) => {
     setSelectedPage,
     folderToggle,
     setFolderToggle,
+    outerClass,
+    foldersClass,
+    folderContainerClass,
   } = props;
 
   const handleFolderOpen = (i) => {
@@ -26,16 +29,16 @@ const ProjectExplorer = ({ ...props }) => {
   // }, [folderOpen]);
 
   return (
-    <div className='project-explorer'>
-      <div className='folders'>
+    <div className={outerClass}>
+      <div className={foldersClass}>
         {data.projects.map((p, i) => {
           return (
             <div
               key={`folder-${i}`}
               className={
                 folderToggle === i
-                  ? "open-bg folder-container"
-                  : "folder-container"
+                  ? `open-bg ${folderContainerClass}`
+                  : `${folderContainerClass}`
               }
               onClick={() => {
                 if (folderToggle === i && typeof selectedPage !== "number") {

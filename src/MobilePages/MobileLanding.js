@@ -111,7 +111,7 @@ const MobileLanding = ({ ...props }) => {
         causeRipple();
         handleScroll();
       }
-    }, 850);
+    }, 600);
   const handleTouchEnd = (e) => {
     console.log(
       window.scrollY + window.innerHeight,
@@ -181,6 +181,9 @@ const MobileLanding = ({ ...props }) => {
                 setSelectedPage={setSelectedPage}
                 folderToggle={folderToggle}
                 setFolderToggle={setFolderToggle}
+                outerClass={"project-explorer"}
+                folderContainerClass={"folder-container"}
+                foldersClass={"folders"}
               />
             </MobilePageWrapper>
           </Suspense>
@@ -211,7 +214,7 @@ const MobileLanding = ({ ...props }) => {
               classVar={classVar}
               styles={{ textAlign: "left" }}>
               <p style={{ marginBottom: "25px" }}>{data.pages[3].thanks}</p>
-              <div className='content-container'>
+              <div className='external-link-container-mobile'>
                 {data.pages[3].links.map((item, i) => {
                   return (
                     <>

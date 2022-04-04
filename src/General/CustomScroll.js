@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from "react";
 
+let scrollID;
+
 const CustomScroll = ({ size }) => {
   const [scrollbarHeight, setScrollBarHeight] = useState();
   const [scrollbarPosition, setScrollBarPosition] = useState();
   const [scrollBarRendered, setScrollBarRendered] = useState();
   const [scrollHeight, setScrollHeight] = useState();
   const [trackHeight, setTrackHeight] = useState();
+
   useEffect(() => {
-    console.log(size);
-    const myScrollFunc = () => {
-      let SH = document.getElementById("outer").offsetHeight;
+    const myScrollFunc = (e) => {
+      if (typeof scrollID === "number") {
+        clearTimeout(scrollID);
+      }
+      let SH = document.getElementById("inner-desktop-content").offsetHeight;
       let TH = size.height;
       let STH = document.getElementById("scroll-track").offsetHeight;
+      // console.log("SH: " + SH, "TH: " + TH, "STH: " + STH);
       setScrollHeight((p) => {
-        p = document.getElementById("outer").offsetHeight;
+        p = document.getElementById("inner-desktop-content").offsetHeight;
+        // console.log(p);
         return p;
       });
       setTrackHeight((p) => {
@@ -26,22 +33,29 @@ const CustomScroll = ({ size }) => {
       });
       document.getElementById("scrollbar").style.backgroundColor = "#d38239";
 
-      let min = (+window.scrollY / +SH) * TH;
+      let min =
+        (document.getElementById("desktop-content-container").scrollTop / +SH) *
+        TH;
+      console.log();
+
       setScrollBarPosition((p) => {
         p = `${Math.min(min, TH - Math.max((TH / SH) * STH, 20))}px`;
-
+        // console.log(p);
         return p;
       });
-      setTimeout(() => {
-        document.getElementById("scrollbar").style.backgroundColor =
-          "transparent";
-      }, 1000);
+      const timer = () =>
+        setTimeout(() => {
+          document.getElementById("scrollbar").style.backgroundColor =
+            "transparent";
+        }, 500);
+
+      scrollID = timer();
     };
 
-    document.addEventListener("scroll", myScrollFunc);
+    window.addEventListener("wheel", myScrollFunc);
 
     return () => {
-      document.removeEventListener("scroll", myScrollFunc);
+      window.removeEventListener("wheel", myScrollFunc);
     };
   }, [size]);
 

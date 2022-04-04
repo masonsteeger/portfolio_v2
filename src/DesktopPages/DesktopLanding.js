@@ -4,7 +4,10 @@ import MenuIcon from "../Components/MobileMenu/MenuIcon";
 import Logo from "../Components/Logo";
 import ProjectExplorer from "../General/ProjectExplorer";
 import DesktopMenu from "../Components/DesktopMenu/DesktopMenu";
+import CustomScroll from "../General/CustomScroll";
 import "../desktop.css";
+import DesktopTitle from "./DesktopTitle";
+import DesktopWrapper from "./DesktopWrapper";
 
 const DesktopHome = React.lazy(() => import("../DesktopPages/DesktopHome"));
 const MobilePageWrapper = React.lazy(() =>
@@ -22,6 +25,7 @@ const DesktopLanding = ({ ...props }) => {
     setSelectedPage,
     folderToggle,
     setFolderToggle,
+    size,
   } = props;
   const [start, setStart] = useState();
   const [time, setTime] = useState(Date.now() - 2000);
@@ -32,81 +36,89 @@ const DesktopLanding = ({ ...props }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className={containerVar} style={{ overflow: "hidden" }}>
-      <DesktopMenu data={data} />
+      <DesktopMenu data={data} page={page} setPage={setPage} />
       <div id='desktop-content-container'>
         <div id='menu-spacer'></div>
         <div id='inner-desktop-content'>
-          <DesktopHome data={data} />
+          <DesktopWrapper id={"home-desktop-wrapper"}>
+            <DesktopHome data={data} />
+          </DesktopWrapper>
+          <DesktopWrapper id={"projects-desktop-wrapper"}>
+            <DesktopTitle title={"Projects"} bar={"right"} />
+            <ProjectExplorer
+              data={data.pages[1]}
+              folderOpen={folderOpen}
+              setFolderOpen={setFolderOpen}
+              selectedPage={selectedPage}
+              setSelectedPage={setSelectedPage}
+              folderToggle={folderToggle}
+              setFolderToggle={setFolderToggle}
+              outerClass={"desktop-project-explorer"}
+              folderContainerClass={"desktop-folder-container"}
+              foldersClass={"desktop-folders"}
+            />
+          </DesktopWrapper>
+          <DesktopWrapper id={"about-desktop-wrapper"}>
+            <DesktopTitle title={"About"} bar={"left"} />
+            <div
+              className='desktop-about-container'
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexWrap: "wrap",
+              }}>
+              <p className='body-text' style={{ textAlign: "right" }}>
+                {data.pages[2].about}
+              </p>
+              <img
+                src={data.pages[2].img}
+                id='about-img-desktop'
+                alt='Mason Steeger'
+              />
+            </div>
+          </DesktopWrapper>
+          <DesktopWrapper id={"contact-desktop-wrapper"}>
+            <DesktopTitle title={"Contact"} bar={"right"} />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                paddingBottom: "200px",
+              }}>
+              <p
+                className='body-text'
+                style={{ paddingBottom: "50px", textAlign: "left" }}>
+                {data.pages[3].thanks}
+              </p>
+              <div className='external-link-container'>
+                {data.pages[3].links.map((item, i) => {
+                  return (
+                    <div>
+                      <a
+                        className='contact-link'
+                        rel='noreferrer'
+                        href={item.link}
+                        target='_blank'>
+                        <img
+                          src={item.src}
+                          style={{
+                            height: "clamp(142px, 10vw ,300px)",
+                            margin: "40px",
+                          }}
+                          alt={item.alt}
+                        />
+                      </a>
+                      <p className='contact-link-text'>{item.text}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </DesktopWrapper>
         </div>
+        <CustomScroll size={size} />
       </div>
-
-      {/* <Suspense fallback={<Loader />}>
-        <MobilePageWrapper
-          title={data.pages[1].title.toUpperCase()}
-          classVar={classVar}
-          styles={{ textAlign: "left" }}>
-          <ProjectExplorer
-            data={data.pages[1]}
-            folderOpen={folderOpen}
-            setFolderOpen={setFolderOpen}
-            selectedPage={selectedPage}
-            setSelectedPage={setSelectedPage}
-            folderToggle={folderToggle}
-            setFolderToggle={setFolderToggle}
-          />
-        </MobilePageWrapper>
-      </Suspense>
-
-      <Suspense fallback={<Loader />}>
-        <MobilePageWrapper
-          title={data.pages[2].title.toUpperCase()}
-          classVar={classVar}
-          styles={{ textAlign: "left" }}>
-          <img
-            src={data.pages[2].img}
-            style={{
-              width: "100%",
-              margin: "0 0 20px",
-              borderRadius: "25px",
-            }}
-            alt='Mason Steeger'
-          />
-          <p style={{ paddingBottom: "70px" }}>{data.pages[2].about}</p>
-        </MobilePageWrapper>
-      </Suspense>
-
-      <Suspense fallback={<Loader />}>
-        <MobilePageWrapper
-          title={data.pages[3].title.toUpperCase()}
-          classVar={classVar}
-          styles={{ textAlign: "left" }}>
-          <p style={{ marginBottom: "25px" }}>{data.pages[3].thanks}</p>
-          <div className='content-container'>
-            {data.pages[3].links.map((item, i) => {
-              return (
-                <>
-                  <a
-                    className='contact-link'
-                    rel='noreferrer'
-                    href={item.link}
-                    target='_blank'>
-                    <img
-                      src={item.src}
-                      style={{
-                        width: item.width,
-                        marginBottom: "10px",
-                      }}
-                      alt={item.alt}
-                    />
-                  </a>
-                  <p className='contact-link-text'>{item.text}</p>
-                </>
-              );
-            })}
-          </div>
-          <div style={{ height: "40px" }}></div>
-        </MobilePageWrapper>
-      </Suspense> */}
     </div>
   );
 };

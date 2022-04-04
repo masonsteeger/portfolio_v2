@@ -363,25 +363,7 @@ span.ripple {
   animation-fill-mode: forwards;
 }
 
-/* ============== CUSTOMSCROLL.JS ============== */
-
-#scroll-track {
-  width: 1.5vw;
-  background-color: transparent;
-  position: fixed;
-  right: 0px;
-  top: 0.25vh;
-}
-
-#scrollbar {
-  background-color: transparent;
-  width: 5px;
-  position: relative;
-  border-radius: 25px;
-  transition: background-color 0.5s;
-}
-
-/* ============== PageWrapper.JS ============== */
+/* ============== PAGEWRAPPER.JS ============== */
 
 .outer-wrapper {
   position: absolute;
