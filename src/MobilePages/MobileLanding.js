@@ -184,6 +184,12 @@ const MobileLanding = ({ ...props }) => {
                 outerClass={"project-explorer"}
                 folderContainerClass={"folder-container"}
                 foldersClass={"folders"}
+                collectionStack={"collection-stack"}
+                collectionView={"collection-view"}
+                files='files'
+                fileContainer={"file-container"}
+                paper={"paper"}
+                paperLine={"paper-line"}
               />
             </MobilePageWrapper>
           </Suspense>

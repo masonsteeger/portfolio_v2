@@ -8,7 +8,7 @@
 }
 
 .desktop-wrapper {
-  height: 90vh;
+  height: 100vh;
 }
 
 /* ============== DESKTOPLANDING.JS ============== */
@@ -69,22 +69,8 @@
   flex-wrap: wrap;
 }
 
-@media screen and (max-width: 937px) {
-  .body-text {
-    width: 80%;
-    text-align: center !important;
-    padding: 0 0 20px 0;
-  }
-
-  .desktop-about-container {
-    justify-content: center;
-  }
-  #about-img-desktop {
-    width: 80%;
-  }
-  #about-wrapper {
-    height: 70vh;
-  }
+#projects-desktop-wrapper {
+  min-height: 1050px;
 }
 
 /* ============== CUSTOMSCROLL.JS ============== */
@@ -101,7 +87,7 @@
   width: 5px;
   position: relative;
   border-radius: 25px;
-  transition: background-color 0.5s;
+  transition: all 0.5s;
 }
 
 /* ============== DESKTOPMENU.JS ============== */
@@ -123,6 +109,7 @@
   width: clamp(40px, 10vw, 63px);
   margin: 20px auto;
   transition: transform 0.5s;
+  cursor: pointer;
 }
 
 /* ============== DESKTOPHOME.JS ============== */
@@ -201,6 +188,36 @@
   overflow: hidden;
 }
 
+.desktop-collection-stack {
+  margin: 5px 50px;
+  width: 150px;
+  position: relative;
+  cursor: pointer;
+}
+
+.desktop-collection-view {
+  padding: 0 20px;
+  background: var(--primary);
+  z-index: 2;
+  position: relative;
+  height: 100px;
+  border-radius: 5px;
+  transition: 0.2s;
+  bottom: 0;
+  border-top-left-radius: 0;
+}
+.desktop-collection-view::before {
+  content: "";
+  position: absolute;
+  background: var(--primary);
+  width: 40%;
+  top: -10px;
+  left: 0px;
+  height: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
 /* ============== DESKTOPTITLE.JS ============== */
 
 .desktop-title-container {
@@ -219,4 +236,120 @@
   height: clamp(15px, 40vw, 30px);
   background-color: #d38239;
   width: 100%;
+}
+.desktop-files {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.desktop-file-container {
+  width: 33%;
+  margin-top: 10%;
+}
+
+.desktop-paper {
+  height: 200px;
+  width: 146px;
+  background-color: var(--primary);
+  margin: 0 auto 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 990;
+  transform: scale(1);
+}
+/* Paper fold from Nicholas Gallagher */
+/* https://nicolasgallagher.com/pure-css-folded-corner-effect/demo/ */
+
+.desktop-paper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 22px 22px 0;
+  border-style: solid;
+  border-color: #24232c #24232c #f8f8ff #f8f8ff;
+  background: transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 30%), -1px 1px 1px rgb(0 0 0 / 20%);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), -1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 1px rgb(0 0 0 / 30%), -1px 1px 1px rgb(0 0 0 / 20%);
+}
+
+.desktop-folder-container > p {
+  margin-top: 15px;
+  font-size: 32px;
+}
+
+.desktop-file-container > p {
+  font-size: 24px;
+}
+
+.desktop-paper-line {
+  height: 15px;
+  width: 75%;
+  margin: 10px 0;
+  border-radius: 25px;
+  background-color: gray;
+  transition: 3s transform;
+}
+
+/* ============== MEDIA QUERIES ============== */
+
+@media screen and (max-width: 937px) {
+  .body-text {
+    width: 80%;
+    text-align: center !important;
+    padding: 0 0 20px 0;
+  }
+
+  .desktop-about-container {
+    justify-content: center;
+  }
+  #about-img-desktop {
+    width: 80%;
+  }
+  #about-wrapper {
+    height: 70vh;
+  }
+  .desktop-collection-stack {
+    width: 100px;
+  }
+  .desktop-collection-view {
+    height: 70px;
+  }
+  .desktop-paper {
+    height: 100px;
+    width: 73px;
+  }
+  .desktop-folder-container > p {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+
+  .desktop-file-container > p {
+    font-size: 16px;
+  }
+
+  .desktop-paper-line {
+    height: 7px;
+
+    margin: 5px 0;
+  }
+
+  #projects-desktop-wrapper {
+    min-height: 900px;
+  }
+}
+
+@media screen and (max-height: 937px) {
+  .title-container {
+    justify-content: flex-start;
+  }
 }

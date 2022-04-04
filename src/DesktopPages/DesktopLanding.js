@@ -34,13 +34,16 @@ const DesktopLanding = ({ ...props }) => {
   );
   const [classVar, setClassVar] = useState("outer-wrapper");
   const [open, setOpen] = useState(false);
+
   return (
     <div className={containerVar} style={{ overflow: "hidden" }}>
-      <DesktopMenu data={data} page={page} setPage={setPage} />
+      <DesktopMenu data={data} page={page} setPage={setPage} size={size} />
       <div id='desktop-content-container'>
         <div id='menu-spacer'></div>
         <div id='inner-desktop-content'>
-          <DesktopWrapper id={"home-desktop-wrapper"}>
+          <DesktopWrapper
+            id={"home-desktop-wrapper"}
+            styles={{ minHeight: "700px" }}>
             <DesktopHome data={data} />
           </DesktopWrapper>
           <DesktopWrapper id={"projects-desktop-wrapper"}>
@@ -56,9 +59,17 @@ const DesktopLanding = ({ ...props }) => {
               outerClass={"desktop-project-explorer"}
               folderContainerClass={"desktop-folder-container"}
               foldersClass={"desktop-folders"}
+              collectionStack={"desktop-collection-stack"}
+              collectionView={"desktop-collection-view"}
+              files={"desktop-files"}
+              fileContainer={"desktop-file-container"}
+              paper={"desktop-paper"}
+              paperLine={"desktop-paper-line"}
             />
           </DesktopWrapper>
-          <DesktopWrapper id={"about-desktop-wrapper"}>
+          <DesktopWrapper
+            id={"about-desktop-wrapper"}
+            styles={{ minHeight: " 700px" }}>
             <DesktopTitle title={"About"} bar={"left"} />
             <div
               className='desktop-about-container'
@@ -117,7 +128,6 @@ const DesktopLanding = ({ ...props }) => {
             </div>
           </DesktopWrapper>
         </div>
-        <CustomScroll size={size} />
       </div>
     </div>
   );

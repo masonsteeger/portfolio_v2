@@ -14,6 +14,12 @@ const ProjectExplorer = ({ ...props }) => {
     outerClass,
     foldersClass,
     folderContainerClass,
+    collectionStack,
+    collectionView,
+    fileContainer,
+    files,
+    paper,
+    paperLine,
   } = props;
 
   const handleFolderOpen = (i) => {
@@ -63,8 +69,8 @@ const ProjectExplorer = ({ ...props }) => {
                   handleFolderOpen(i);
                 }
               }}>
-              <div className='collection-stack'>
-                <div className='collection-view'></div>
+              <div className={collectionStack}>
+                <div className={collectionView}></div>
                 <div
                   className={
                     folderToggle === i
@@ -80,7 +86,7 @@ const ProjectExplorer = ({ ...props }) => {
         })}
       </div>
       <div className='file-explorer-separator'></div>
-      <div className='files'>
+      <div className={files}>
         {typeof folderOpen === "number"
           ? data.projects[folderOpen].files.map((file, i) => {
               const delay =
@@ -92,16 +98,16 @@ const ProjectExplorer = ({ ...props }) => {
                   onClick={() => {
                     if (typeof selectedPage !== "number") setSelectedPage(i);
                   }}
-                  className='file-container'
+                  className={fileContainer}
                   style={{ animationDelay: delay + "s" }}
                   key={`folder-${folderOpen}-file-${i}`}>
                   <div
-                    className={selectedPage === i ? "paper expand" : "paper"}>
+                    className={selectedPage === i ? `${paper} expand` : paper}>
                     <div
-                      className='paper-line'
+                      className={paperLine}
                       style={{ marginTop: "15px" }}></div>
-                    <div className='paper-line'></div>
-                    <div className='paper-line'></div>
+                    <div className={paperLine}></div>
+                    <div className={paperLine}></div>
                   </div>
                   <p>{file.title}</p>
                 </div>
