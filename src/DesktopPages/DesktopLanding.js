@@ -1,13 +1,13 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import Loader from "../General/Loader";
 import MenuIcon from "../Components/MobileMenu/MenuIcon";
 import Logo from "../Components/Logo";
 import ProjectExplorer from "../General/ProjectExplorer";
 import DesktopMenu from "../Components/DesktopMenu/DesktopMenu";
-import CustomScroll from "../General/CustomScroll";
 import "../desktop.css";
 import DesktopTitle from "./DesktopTitle";
 import DesktopWrapper from "./DesktopWrapper";
+import MobilePageTitle from "../Components/MobilePageTitle";
 
 const DesktopHome = React.lazy(() => import("../DesktopPages/DesktopHome"));
 const MobilePageWrapper = React.lazy(() =>
@@ -47,7 +47,7 @@ const DesktopLanding = ({ ...props }) => {
             <DesktopHome data={data} />
           </DesktopWrapper>
           <DesktopWrapper id={"projects-desktop-wrapper"}>
-            <DesktopTitle title={"Projects"} bar={"right"} />
+            <DesktopTitle title={data.pages[page].title} data={data} />
             <ProjectExplorer
               data={data.pages[1]}
               folderOpen={folderOpen}
@@ -70,7 +70,6 @@ const DesktopLanding = ({ ...props }) => {
           <DesktopWrapper
             id={"about-desktop-wrapper"}
             styles={{ minHeight: " 700px" }}>
-            <DesktopTitle title={"About"} bar={"left"} />
             <div
               className='desktop-about-container'
               style={{
@@ -89,7 +88,6 @@ const DesktopLanding = ({ ...props }) => {
             </div>
           </DesktopWrapper>
           <DesktopWrapper id={"contact-desktop-wrapper"}>
-            <DesktopTitle title={"Contact"} bar={"right"} />
             <div
               style={{
                 display: "flex",

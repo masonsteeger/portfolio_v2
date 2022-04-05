@@ -8,6 +8,10 @@
 }
 
 .desktop-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
   height: 100vh;
 }
 
@@ -48,12 +52,15 @@
 }
 
 .desktop-about-container {
+  height: 100%;
+  width: 90%;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
 
 #about-img-desktop {
+  object-fit: cover;
   width: 40%;
   height: 40%;
   border-radius: 25px;
@@ -130,13 +137,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 80px);
   width: 80vw;
   text-align: center;
 }
 
 .stack-logo-container {
-  width: clamp(279px, 29vw, 700px);
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -144,7 +150,7 @@
   flex-wrap: wrap;
   margin: 0;
   margin-top: 20px;
-  width: clamp(240px, 30vw, 480px);
+  width: clamp(240px, 65vw, 720px);
 }
 
 .subtitle-container {
@@ -156,7 +162,7 @@
 }
 
 .stack-logo {
-  width: clamp(40px, 5vw, 80px);
+  width: clamp(80px, 10vw, 120px);
   margin-bottom: 7px;
 }
 
@@ -164,8 +170,7 @@
 .desktop-project-explorer {
   width: 80%;
   height: 100%;
-  margin: auto;
-  padding-bottom: 150px;
+  margin: 10% auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -220,16 +225,54 @@
 
 /* ============== DESKTOPTITLE.JS ============== */
 
-.desktop-title-container {
+.desktop-row-name {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: baseline;
+  width: 100%;
+}
+
+.desktop-name-letters {
+  margin: 0;
+  min-width: 50%;
+  font-size: clamp(2em, 5vw, 4.5em);
+}
+
+.desktop-name-hr {
+  min-width: 20px;
+  min-height: clamp(23px, 3.5vw, 52px);
+  margin: 0 auto;
+  background-color: #d38239;
+}
+
+#desktop-title-container {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 70vw;
+  align-items: flex-end;
+  width: 10vw;
   margin: auto;
+  position: fixed;
+  top: 0;
+  right: 0px;
+  transition: opacity 0.3s;
 }
 .desktop-titles {
   font-size: clamp(2em, 5vw, 4.5em);
-  margin: 20px;
+  min-width: 40%;
+  margin: 5px;
+}
+/* .desktop-name-letters {
+  margin: 0;
+  min-width: 70px;
+  font-size: clamp(2em, 5vw, 4.5em);
+} */
+.desktop-hr {
+  background-color: #d38239;
+  height: clamp(140px, 10vw, 300px);
+  margin-right: 10%;
+  width: clamp(1em, 5vw, 3em);
 }
 
 .desktop-title-bar {
@@ -237,6 +280,7 @@
   background-color: #d38239;
   width: 100%;
 }
+
 .desktop-files {
   display: flex;
   justify-content: center;

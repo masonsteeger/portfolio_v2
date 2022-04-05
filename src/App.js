@@ -38,6 +38,9 @@ function App() {
   };
 
   const [device] = useState(getUserAgent());
+
+  useEffect(() => {}, [page]);
+
   return (
     <>
       <div id='outer' className='App' style={{ overflow: "hidden" }}>

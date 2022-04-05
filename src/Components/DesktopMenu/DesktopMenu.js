@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import CustomScroll from "../../General/CustomScroll";
 
 let scrollID;
 
@@ -9,6 +8,7 @@ const DesktopMenu = ({ data, page, setPage, size }) => {
   const [scrollBarRendered, setScrollBarRendered] = useState();
   const [scrollHeight, setScrollHeight] = useState();
   const [trackHeight, setTrackHeight] = useState();
+  const [pageControll, setPageControll] = useState(0);
 
   const myScrollFunc = useCallback(
     (e) => {
@@ -55,19 +55,82 @@ const DesktopMenu = ({ data, page, setPage, size }) => {
         }, 500);
 
       scrollID = timer();
+
+      const homeTop = document.getElementById("home-desktop-wrapper").offsetTop;
+      const projectsTop = document.getElementById(
+        "projects-desktop-wrapper"
+      ).offsetTop;
+      const aboutTop = document.getElementById(
+        "about-desktop-wrapper"
+      ).offsetTop;
+      // const contactTop = document.getElementById(
+      //   "contact-desktop-wrapper"
+      // ).offsetTop;
+
+      const switchVal = window.innerHeight * 0.6;
+      const pos = document.getElementById(
+        "desktop-content-container"
+      ).scrollTop;
+
+      console.log(pos);
+      console.log(homeTop, projectsTop, aboutTop);
+      switch (true) {
+        case pos > switchVal + aboutTop:
+          if (page !== 3) {
+            setPageControll(3);
+            return;
+          }
+          break;
+        case pos > switchVal + projectsTop:
+          if (page !== 2) {
+            setPageControll(2);
+            return;
+          }
+          break;
+        case pos > switchVal + homeTop:
+          setPageControll(1);
+          return;
+
+          break;
+        case pos >= 0 && pos < 800:
+          setPageControll(0);
+          return;
+
+          break;
+        default:
+          return;
+      }
     },
     [size.height]
   );
 
   useEffect(() => {
-    window.addEventListener("wheel", myScrollFunc);
-    window.addEventListener("scroll", myScrollFunc);
+    document
+      .getElementById("desktop-content-container")
+      .addEventListener("scroll", myScrollFunc);
 
     return () => {
-      window.removeEventListener("wheel", myScrollFunc);
-      window.removeEventListener("scroll", myScrollFunc);
+      document
+        .getElementById("desktop-content-container")
+        .removeEventListener("scroll", myScrollFunc);
     };
   }, [size]);
+
+  useEffect(() => {
+    const title = document.getElementById("desktop-title-container");
+    title.style.opacity = 0;
+    const myTime = () =>
+      setTimeout(() => {
+        setPage(pageControll);
+        title.style.opacity = 1;
+      }, 300);
+
+    let daTimer = myTime();
+
+    return () => {
+      clearTimeout(daTimer);
+    };
+  }, [pageControll]);
 
   return (
     <>
@@ -79,7 +142,6 @@ const DesktopMenu = ({ data, page, setPage, size }) => {
                 const element = document.getElementById(
                   `${item.pageName.toLowerCase()}-desktop-wrapper`
                 );
-                setPage(i);
                 element.scrollIntoView({ behavior: "smooth" });
               }}
               key={`desktop-menu-${i}`}
