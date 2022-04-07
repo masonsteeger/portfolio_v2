@@ -119,10 +119,9 @@ const DesktopLanding = ({ ...props }) => {
                             margin: "40px",
                           }}
                           alt={item.alt}
-                          data-hover={item.alt.split(" ")[0]}
+                          data-hover={item.text}
                         />
                       </a>
-                      <p className='contact-link-text'>{item.text}</p>
                     </div>
                   );
                 })}

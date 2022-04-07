@@ -29,10 +29,22 @@ const SelectedProject = ({ setSelectedPage, projData, closeSelected }) => {
           style={{ color: "#24232c", fontSize: "50px", marginBottom: ".5em" }}>
           {projData.title}
         </h1>
-        <p style={{ color: "#24232c" }}>{projData.desc}</p>
+        <p
+          style={
+            closeSelected === "desktop-project-x"
+              ? { fontSize: "24px", color: "#24232c", lineHeight: "30px" }
+              : { color: "#24232c" }
+          }>
+          {projData.desc}
+        </p>
         <div
           className='outer-link'
-          style={!projData.gitLink ? { justifyContent: "center" } : {}}>
+          style={
+            !projData.gitLink ||
+            (projData.gitLink && closeSelected === "desktop-project-x")
+              ? { justifyContent: "center", width: "40%" }
+              : {}
+          }>
           {projData.gitLink ? (
             <div
               data-hover={"Open Repo"}
@@ -49,13 +61,17 @@ const SelectedProject = ({ setSelectedPage, projData, closeSelected }) => {
                 <img
                   data-hover={"Open Repo"}
                   src='/icons/git-black.svg'
-                  height='50px'
+                  height={
+                    closeSelected === "desktop-project-x" ? "100px" : "50px"
+                  }
                   alt='GitLink'
                 />
               </a>
-              <p data-hover={"Open Repo"} className='proj-link-text'>
-                Repo
-              </p>
+              {closeSelected === "desktop-project-x" ? null : (
+                <p data-hover={"Open Repo"} className='proj-link-text'>
+                  Repo
+                </p>
+              )}
             </div>
           ) : null}
           <div
@@ -73,13 +89,17 @@ const SelectedProject = ({ setSelectedPage, projData, closeSelected }) => {
               <img
                 src='/icons/link.svg'
                 data-hover={"Open Link"}
-                height='50px'
+                height={
+                  closeSelected === "desktop-project-x" ? "100px" : "50px"
+                }
                 alt='LiveLink'
               />
             </a>
-            <p data-hover={"Open Link"} className='proj-link-text'>
-              Link
-            </p>
+            {closeSelected === "desktop-project-x" ? null : (
+              <p data-hover={"Open Link"} className='proj-link-text'>
+                Link
+              </p>
+            )}
           </div>
         </div>
       </div>

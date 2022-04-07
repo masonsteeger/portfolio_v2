@@ -166,17 +166,6 @@ a {
 
 /* ============== DESKTOPHOME.JS ============== */
 
-#desktop-name {
-  font-size: clamp(1em, 10vw, 8em);
-}
-
-#desktop-subtitle {
-  font-size: clamp(2em, 5vw, 5em);
-  margin: 0;
-  margin-top: 10px;
-  width: auto;
-}
-
 .title-container {
   display: flex;
   flex-direction: column;
@@ -196,14 +185,6 @@ a {
   margin: 0;
   margin-top: 20px;
   width: clamp(240px, 65vw, 720px);
-}
-
-.subtitle-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: clamp(292px, 46vw, 729px);
 }
 
 .stack-logo {
@@ -280,7 +261,7 @@ a {
 .desktop-name-letters {
   margin: 0;
   min-width: 50%;
-  font-size: clamp(2em, 5vw, 4.5em);
+  font-size: clamp(2em, 5vw, 4em);
 }
 
 .desktop-name-hr {
@@ -303,9 +284,10 @@ a {
   transition: opacity 0.3s;
 }
 .desktop-titles {
-  font-size: clamp(2em, 5vw, 4.5em);
+  font-size: clamp(2em, 5vw, 3.4em);
   min-width: 40%;
   margin: 5px;
+  margin-right: 10px;
 }
 /* .desktop-name-letters {
   margin: 0;
@@ -334,7 +316,7 @@ a {
 
 .desktop-file-container {
   width: 33%;
-  margin-top: 10%;
+  margin-top: 6%;
   opacity: 0;
   animation-name: fade-in;
   animation-duration: 0.5s;
@@ -343,8 +325,8 @@ a {
 }
 
 .desktop-paper {
-  height: 200px;
-  width: 146px;
+  height: 150px;
+  width: 105px;
   background-color: var(--primary);
   margin: 0 auto 10px;
   position: relative;
@@ -385,9 +367,9 @@ a {
 }
 
 .desktop-paper-line {
-  height: 15px;
+  height: 12px;
   width: 75%;
-  margin: 10px 0;
+  margin: 8px 0;
   border-radius: 25px;
   background-color: gray;
   transition: 3s transform;

@@ -7,12 +7,19 @@ const Mouse = () => {
   return (
     <div
       style={
-        pos.el && pos.el.dataset && pos.el.dataset.hover
-          ? { left: pos.x, top: pos.y, zIndex: "9999", transform: "scale(4)" }
+        pos.el && pos.el.dataset && pos.el.dataset.tech
+          ? { left: pos.x, top: pos.y, zIndex: "9999", transform: "scale(1.8)" }
+          : pos.el && pos.el.dataset && pos.el.dataset.hover
+          ? { left: pos.x, top: pos.y, zIndex: "9999", transform: "scale(2.6)" }
           : { left: pos.x, top: pos.y, zIndex: "9999", transform: "scale(1)" }
       }
       id='mouse'>
-      <p style={{ marginBottom: "0px", fontSize: "5px", color: "#24232c" }}>
+      <p
+        style={
+          pos.el && pos.el.dataset && pos.el.dataset.tech
+            ? { marginBottom: "0px", fontSize: "6px", color: "#24232c" }
+            : { marginBottom: "0px", fontSize: "5px", color: "#24232c" }
+        }>
         <strong>
           {pos.el && pos.el.dataset && pos.el.dataset.hover
             ? pos.el.dataset.hover
