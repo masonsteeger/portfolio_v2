@@ -8,6 +8,7 @@ import "../desktop.css";
 import DesktopTitle from "./DesktopTitle";
 import DesktopWrapper from "./DesktopWrapper";
 import MobilePageTitle from "../Components/MobilePageTitle";
+import Mouse from "./Mouse";
 
 const DesktopHome = React.lazy(() => import("../DesktopPages/DesktopHome"));
 const MobilePageWrapper = React.lazy(() =>
@@ -37,6 +38,7 @@ const DesktopLanding = ({ ...props }) => {
 
   return (
     <div className={containerVar} style={{ overflow: "hidden" }}>
+      <Mouse />
       <DesktopMenu data={data} page={page} setPage={setPage} size={size} />
       <div id='desktop-content-container'>
         <div id='menu-spacer'></div>
@@ -46,8 +48,8 @@ const DesktopLanding = ({ ...props }) => {
             styles={{ minHeight: "700px" }}>
             <DesktopHome data={data} />
           </DesktopWrapper>
+          <DesktopTitle title={data.pages[page].title} data={data} />
           <DesktopWrapper id={"projects-desktop-wrapper"}>
-            <DesktopTitle title={data.pages[page].title} data={data} />
             <ProjectExplorer
               data={data.pages[1]}
               folderOpen={folderOpen}
@@ -65,6 +67,7 @@ const DesktopLanding = ({ ...props }) => {
               fileContainer={"desktop-file-container"}
               paper={"desktop-paper"}
               paperLine={"desktop-paper-line"}
+              closeSelected={"desktop-project-x"}
             />
           </DesktopWrapper>
           <DesktopWrapper
@@ -116,6 +119,7 @@ const DesktopLanding = ({ ...props }) => {
                             margin: "40px",
                           }}
                           alt={item.alt}
+                          data-hover={item.alt.split(" ")[0]}
                         />
                       </a>
                       <p className='contact-link-text'>{item.text}</p>

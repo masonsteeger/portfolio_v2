@@ -11,6 +11,7 @@ const DesktopHome = ({ data }) => {
         {data.meta.techStack.map((tech, i) => {
           return (
             <img
+              data-hover={tech}
               className='stack-logo'
               src={`/icons/stack/${tech}.svg`}
               alt={tech}

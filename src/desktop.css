@@ -5,6 +5,7 @@
   --accent: #d38239;
   --ani-time: 2.8s;
   --ani-delay: 0.2s;
+  cursor: none;
 }
 
 .desktop-wrapper {
@@ -13,6 +14,31 @@
   align-content: center;
   justify-content: center;
   height: 100vh;
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+  animation-delay: 0.2s;
+}
+
+#mouse {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: 3px solid #d38239;
+  background-color: #dce8eb;
+  position: absolute;
+  pointer-events: none;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  word-spacing: 0px;
+}
+
+a {
+  cursor: none;
 }
 
 /* ============== DESKTOPLANDING.JS ============== */
@@ -92,9 +118,11 @@
 
 #scrollbar {
   width: 5px;
+  box-sizing: border-box;
   position: relative;
   border-radius: 25px;
-  transition: all 0.5s;
+  transition: all 0.5s ease-in-out;
+  border: var(--secondary) 1px solid;
 }
 
 /* ============== DESKTOPMENU.JS ============== */
@@ -115,8 +143,25 @@
 .desktop-menu-icon {
   width: clamp(40px, 10vw, 63px);
   margin: 20px auto;
-  transition: transform 0.5s;
-  cursor: pointer;
+  animation-name: menu-slide;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  opacity: 0;
+  transition: transform 0.3s ease-in;
+  pointer-events: all;
+}
+
+@keyframes menu-slide {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* ============== DESKTOPHOME.JS ============== */
@@ -197,7 +242,6 @@
   margin: 5px 50px;
   width: 150px;
   position: relative;
-  cursor: pointer;
 }
 
 .desktop-collection-view {
@@ -271,8 +315,8 @@
 .desktop-hr {
   background-color: #d38239;
   height: clamp(140px, 10vw, 300px);
-  margin-right: 10%;
-  width: clamp(1em, 5vw, 3em);
+  min-width: 40%;
+  margin-right: 5px;
 }
 
 .desktop-title-bar {
@@ -291,6 +335,11 @@
 .desktop-file-container {
   width: 33%;
   margin-top: 10%;
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 0.5s;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
 }
 
 .desktop-paper {
@@ -342,6 +391,22 @@
   border-radius: 25px;
   background-color: gray;
   transition: 3s transform;
+}
+
+.desktop-project-x {
+  position: absolute;
+  z-index: 2002;
+  top: 25px;
+  right: 25px;
+  height: 50px;
+  width: 50px;
+  pointer-events: all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.desktop-project-x > img {
+  width: 100%;
 }
 
 /* ============== MEDIA QUERIES ============== */

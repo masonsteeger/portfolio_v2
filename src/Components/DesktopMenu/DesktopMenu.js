@@ -10,6 +10,13 @@ const DesktopMenu = ({ data, page, setPage, size }) => {
   const [trackHeight, setTrackHeight] = useState();
   const [pageControll, setPageControll] = useState(0);
 
+  const idArr = [
+    "home-desktop-wrapper",
+    "projects-desktop-wrapper",
+    "about-desktop-wrapper",
+    "contact-desktop-wrapper",
+  ];
+
   const myScrollFunc = useCallback(
     (e) => {
       if (typeof scrollID === "number") {
@@ -76,27 +83,17 @@ const DesktopMenu = ({ data, page, setPage, size }) => {
       console.log(homeTop, projectsTop, aboutTop);
       switch (true) {
         case pos > switchVal + aboutTop:
-          if (page !== 3) {
-            setPageControll(3);
-            return;
-          }
-          break;
+          setPageControll(3);
+          return;
         case pos > switchVal + projectsTop:
-          if (page !== 2) {
-            setPageControll(2);
-            return;
-          }
-          break;
+          setPageControll(2);
+          return;
         case pos > switchVal + homeTop:
           setPageControll(1);
           return;
-
-          break;
         case pos >= 0 && pos < 800:
           setPageControll(0);
           return;
-
-          break;
         default:
           return;
       }
@@ -121,7 +118,12 @@ const DesktopMenu = ({ data, page, setPage, size }) => {
     title.style.opacity = 0;
     const myTime = () =>
       setTimeout(() => {
-        setPage(pageControll);
+        setPage((p) => {
+          p = pageControll;
+          document.getElementById(idArr[p]).style.animationPlayState =
+            "running";
+          return p;
+        });
         title.style.opacity = 1;
       }, 300);
 
@@ -147,12 +149,19 @@ const DesktopMenu = ({ data, page, setPage, size }) => {
               key={`desktop-menu-${i}`}
               style={
                 i === page
-                  ? { transform: "scale(1.4)" }
-                  : { transform: "scale(1)" }
+                  ? {
+                      transform: "scale(1.4)",
+                      animationDelay: `${0.7 * (i + 1)}s`,
+                    }
+                  : {
+                      transform: "scale(1)",
+                      animationDelay: `${0.7 * (i + 1)}s`,
+                    }
               }
               className='desktop-menu-icon'
               src={item.icon}
               alt={item.pageName}
+              data-hover={item.pageName}
             />
           );
         })}

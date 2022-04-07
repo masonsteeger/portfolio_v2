@@ -1,6 +1,6 @@
 import React from "react";
 
-const SelectedProject = ({ setSelectedPage, projData }) => {
+const SelectedProject = ({ setSelectedPage, projData, closeSelected }) => {
   return (
     <div id='selected-proj'>
       <div
@@ -13,8 +13,9 @@ const SelectedProject = ({ setSelectedPage, projData }) => {
             setSelectedPage(null);
           }, 500);
         }}
-        className='project-x'>
-        <img src={"/icons/x.svg"} alt='close' />
+        data-hover={"Close"}
+        className={closeSelected}>
+        <img data-hover={"Close"} src={"/icons/x.svg"} alt='close' />
       </div>
       <div
         style={{
@@ -34,33 +35,51 @@ const SelectedProject = ({ setSelectedPage, projData }) => {
           style={!projData.gitLink ? { justifyContent: "center" } : {}}>
           {projData.gitLink ? (
             <div
+              data-hover={"Open Repo"}
               className='link-container'
               onClick={() => {
                 document.getElementById("repo-link").click();
               }}>
               <a
+                data-hover={"Open Repo"}
                 id='repo-link'
                 rel='noreferrer'
                 href={projData.gitLink}
                 target='_blank'>
-                <img src='/icons/git-black.svg' height='50px' alt='GitLink' />
+                <img
+                  data-hover={"Open Repo"}
+                  src='/icons/git-black.svg'
+                  height='50px'
+                  alt='GitLink'
+                />
               </a>
-              <p className='proj-link-text'>Repo</p>
+              <p data-hover={"Open Repo"} className='proj-link-text'>
+                Repo
+              </p>
             </div>
           ) : null}
           <div
             className='link-container'
+            data-hover={"Open Link"}
             onClick={() => {
               document.getElementById("live-link").click();
             }}>
             <a
+              data-hover={"Open Link"}
               id='live-link'
               rel='noreferrer'
               href={`${projData.liveLink}`}
               target='_blank'>
-              <img src='/icons/link.svg' height='50px' alt='LiveLink' />
+              <img
+                src='/icons/link.svg'
+                data-hover={"Open Link"}
+                height='50px'
+                alt='LiveLink'
+              />
             </a>
-            <p className='proj-link-text'>Link</p>
+            <p data-hover={"Open Link"} className='proj-link-text'>
+              Link
+            </p>
           </div>
         </div>
       </div>

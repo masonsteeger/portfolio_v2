@@ -970,7 +970,6 @@ https://projects.lukehaas.me/css-loaders/
   margin: 5px auto;
   width: 90px;
   position: relative;
-  cursor: pointer;
 }
 .collection-view {
   padding: 0 20px;
@@ -1041,6 +1040,7 @@ https://projects.lukehaas.me/css-loaders/
   opacity: 0;
   animation: fade-in 0.5s linear normal forwards;
   border-radius: 20px;
+  pointer-events: all;
 }
 
 #selected-proj-exit {

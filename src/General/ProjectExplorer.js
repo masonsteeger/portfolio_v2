@@ -20,6 +20,7 @@ const ProjectExplorer = ({ ...props }) => {
     files,
     paper,
     paperLine,
+    closeSelected,
   } = props;
 
   const handleFolderOpen = (i) => {
@@ -40,6 +41,7 @@ const ProjectExplorer = ({ ...props }) => {
         {data.projects.map((p, i) => {
           return (
             <div
+              data-hover={folderToggle === i ? "Close Folder" : "Open Folder"}
               key={`folder-${i}`}
               className={
                 folderToggle === i
@@ -52,7 +54,7 @@ const ProjectExplorer = ({ ...props }) => {
                 } else if (typeof selectedPage !== "number") {
                   setFolderToggle(i);
                 }
-                const col = document.getElementsByClassName("file-container");
+                const col = document.getElementsByClassName(fileContainer);
                 console.log(col);
                 if (col.length > 0) {
                   let len = col.length;
@@ -69,16 +71,27 @@ const ProjectExplorer = ({ ...props }) => {
                   handleFolderOpen(i);
                 }
               }}>
-              <div className={collectionStack}>
-                <div className={collectionView}></div>
+              <div
+                data-hover={folderToggle === i ? "Close Folder" : "Open Folder"}
+                className={collectionStack}>
                 <div
+                  data-hover={
+                    folderToggle === i ? "Close Folder" : "Open Folder"
+                  }
+                  className={collectionView}></div>
+                <div
+                  data-hover={
+                    folderToggle === i ? "Close Folder" : "Open Folder"
+                  }
                   className={
                     folderToggle === i
                       ? "collection-shadow-4 collection-shadow-4-open"
                       : "collection-shadow-4"
                   }></div>
               </div>
-              <p className={folderToggle === i ? "folder-text" : null}>
+              <p
+                data-hover={folderToggle === i ? "Close Folder" : "Open Folder"}
+                className={folderToggle === i ? "folder-text" : null}>
                 {p.folder}
               </p>
             </div>
@@ -95,6 +108,7 @@ const ProjectExplorer = ({ ...props }) => {
                   : (data.projects[folderOpen].files.length - i) * 0.2;
               return (
                 <div
+                  data-hover={"Open File"}
                   onClick={() => {
                     if (typeof selectedPage !== "number") setSelectedPage(i);
                   }}
@@ -102,12 +116,14 @@ const ProjectExplorer = ({ ...props }) => {
                   style={{ animationDelay: delay + "s" }}
                   key={`folder-${folderOpen}-file-${i}`}>
                   <div
+                    data-hover={"Open File"}
                     className={selectedPage === i ? `${paper} expand` : paper}>
                     <div
+                      data-hover={"Open File"}
                       className={paperLine}
                       style={{ marginTop: "15px" }}></div>
-                    <div className={paperLine}></div>
-                    <div className={paperLine}></div>
+                    <div data-hover={"Open File"} className={paperLine}></div>
+                    <div data-hover={"Open File"} className={paperLine}></div>
                   </div>
                   <p>{file.title}</p>
                 </div>
@@ -119,6 +135,7 @@ const ProjectExplorer = ({ ...props }) => {
         <SelectedProject
           setSelectedPage={setSelectedPage}
           projData={data.projects[folderOpen].files[selectedPage]}
+          closeSelected={closeSelected}
         />
       ) : null}
     </div>

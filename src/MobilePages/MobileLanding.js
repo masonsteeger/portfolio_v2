@@ -190,6 +190,7 @@ const MobileLanding = ({ ...props }) => {
                 fileContainer={"file-container"}
                 paper={"paper"}
                 paperLine={"paper-line"}
+                closeSelected={"project-x"}
               />
             </MobilePageWrapper>
           </Suspense>
